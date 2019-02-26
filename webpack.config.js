@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
   entry: './frontend/feathernote.jsx',
   output: {
-    path: path.resolve(_dirname, 'app', 'assets', 'javascripts'),
+    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: 'bundle.js'
   },
   module: {

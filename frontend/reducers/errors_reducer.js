@@ -1,6 +1,6 @@
 import { RECEIVE_ERRORS, RECEIVE_USER, LOGOUT_USER } from '../actions/session_actions';
 
-const _nullErrors = {};
+const _nullErrors = {session: []};
 
 const errorsReducer = (state = _nullErrors, action) => {
   //Make sure current state is not mutated
@@ -23,13 +23,12 @@ export default errorsReducer;
 /*
   State Slice:
   {
-    errors: { }
+    errors: { session: [] }
 
     or 
 
     errors: {
-      0: ["Error1"],
-      1: ["Error2"]
+      session: ["Error1", "Error2", ...]
     }
 
 

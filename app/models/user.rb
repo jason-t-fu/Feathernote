@@ -2,14 +2,15 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  validates :username, :email, :session_token, presence: true, uniqueness: true
+  validates :email, :session_token, presence: true, uniqueness: true
+  validate :email_must_be_valid
   validates :password_digest, presence: true
   validates :password, length: {minimum: 8, allow_nil: true}
 
   attr_reader :password
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
 
     if user && user.is_password?(password)
       user
@@ -35,5 +36,12 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  private
+  def email_must_be_valid
+    if !(email =~ URI::MailTo::EMAIL_REGEXP) && errors.messages.empty?
+      errors.add(:email, "address is not valid");
+    end
   end
 end

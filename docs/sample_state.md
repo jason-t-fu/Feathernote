@@ -92,14 +92,14 @@
     users: {
       11: {
         id: 11,
-        username: "green_elephant",
+        email: "green_elephant@aa.io",
         authoredNoteIds: [1, 3],
         ownedNotebookIds: [1, 5],
         
       },
       25: {
         id: 25,
-        username: "green_hippo",
+        email: "green_hippo@aa.io",
         authoredNoteIds: [2],
         ownedNotebookIds: [6],
       }
@@ -109,7 +109,7 @@
     loading: true/false
   },
   errors: {
-    login: ["Incorrect username/password combination"],
+    login: ["Incorrect email/password combination"],
     noteForm: ["Note title cannot be blank"],
     notebookForm: ["Notebook title cannot be blank"],
     tagForm: ["Tag name cannot be blank"],

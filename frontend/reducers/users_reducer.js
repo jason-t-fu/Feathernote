@@ -29,11 +29,11 @@ export default usersReducer;
   entities: {
     users: {
       1: {
-        username: "",
+        email: "",
         password: "",
       }
       2: {
-        username: "",
+        email: "",
         password: ""
       }
     }

@@ -16,13 +16,23 @@ The following routes are part of the `Main Component` and are rendered between t
   * `SessionForm`
 * `/signup`
   * `SessionForm`
-* `/notebooks`
-  * `NotebooksIndex`
-    * `NotebooksIndexItem`
-* `/notebooks/notes`
 * `/notes`
   * `NotesIndex`
     * `NotesIndexItem`
+  * `NoteShow`
+* `/notebooks`
+  * `NotebooksIndex`
+    * `NotebooksIndexItem`
+* `/notebooks/:notebookId`
+  * `NotebookShow`
+    * `NotesIndex`
+      * `NotesIndexItem`
+    * `NoteShow`
 * `/tags`
   * `TagsIndex`
     * `TagsIndexItem`
+* `/tags/:tagId`
+  * `TagShow`
+    * `NotesIndex`
+      * `NotesIndexItem`
+    * `NoteShow`

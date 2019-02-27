@@ -1,39 +1,16 @@
-import { RECEIVE_ERRORS, RECEIVE_USER, LOGOUT_USER } from '../actions/session_actions';
+import { combineReducers } from 'redux';
+import sessionErrorsReducer from './session_errors_reducer';
 
-const _nullErrors = {session: []};
-
-const errorsReducer = (state = _nullErrors, action) => {
-  //Make sure current state is not mutated
-  Object.freeze(state);
-
-  //On type of action, update state
-  switch (action.type) {
-    case RECEIVE_USER:
-    case LOGOUT_USER:
-      return _nullErrors;
-    case RECEIVE_ERRORS:
-      return action.errors;
-    default:
-      return state;
-  }
-};
-
-export default errorsReducer;
+export default combineReducers({
+  session: sessionErrorsReducer,
+});
 
 /*
   State Slice:
-  {
-    errors: { session: [] }
-
-    or 
-
-    errors: {
-      session: ["Error1", "Error2", ...]
+  errors: {
+    session: {
+      0: ['Error 1'],
+      1: ['Error 2']
     }
-
-
-    entities: {...}
-    session: {...}
-    ui: {...}
   }
 */

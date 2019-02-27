@@ -26,8 +26,6 @@
 | `modified_at` | date      | not null                       |
 
 * index on `title`
-* `author_id` references `users`
-* index on `author_id`
 * `notebook_id` references `notebooks`
 * index on `notebooks`
 
@@ -56,9 +54,11 @@
 |---------------|-----------|--------------------------------|
 | `id`          | integer   | not null, primary key          |
 | `name`        | string    | not null, indexed              |
+| `owner_id`    | integer   | not null, indexed, foreign key |
 | `created_at`  | date      | not null                       |
 | `modified_at` | date      | not null                       |
 
+* index on `[owner_id, name], unique: true`
 * index on `name`
 
 ## `tagged_notes`
@@ -74,6 +74,7 @@
 * Joins table for the many-to-many relationship between notes and tags
 * `tag_id` references `tags`
 * `note_id` references `notes`
+* index on `[owner_id, tag_id], unique: true`
 * index on `[tag_id, note_id], unique: true`
 * index on `note_id`
 

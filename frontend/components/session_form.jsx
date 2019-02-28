@@ -32,7 +32,7 @@ const SessionForm = props => {
   })
 
   function handleSubmit(user) {
-    if (props.loginDemoUser) {
+    if (demoDisabled) {
       props.loginDemoUser(user)
     } else {
       props.action(user);

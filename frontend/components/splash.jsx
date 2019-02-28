@@ -45,7 +45,7 @@ const Splash = props => {
 
     return (
       <main className="splash-main">
-        <div className="full-width">
+        <div className="full-width-hero">
           <div className="hero limit-width">
             <div className="content">
               <h1>Feel organized without the effort</h1>
@@ -58,6 +58,23 @@ const Splash = props => {
             </div>
             <div className="hero-image">
               <img src={window.images.hero} />
+            </div>
+          </div>
+        </div>
+        <div className="full-width-cards">
+          <div className="info-cards limit-width">
+            <img class="focus-icon" src={window.images.focus} />
+            <h2>Focus on what matters most</h2>
+            <div class="cards">
+              <div>
+                Manage everything from big projects to personal moments.
+                </div>
+              <div>
+                Capture ideas and inspiration in notes, voice, and pictures.
+                </div>
+              <div>
+                Never lose track of your tasks and deadlines.
+                </div>
             </div>
           </div>
         </div>
@@ -74,7 +91,7 @@ const Splash = props => {
           <div className="splash-footer-title">Feathernote</div>
         </div>
         <nav className="splash-footer-info">
-          <ul>
+          <ul className="footer-info-links">
             <li><a href="https://github.com/jason-t-fu">
               <i className="fab fa-3x fa-github"></i></a></li>
             <li><a href="https://www.linkedin.com/in/fujasont">
@@ -82,9 +99,7 @@ const Splash = props => {
             <li><a href="#">
               <i className="fas fa-3x fa-at"></i></a></li>
           </ul>
-        </nav>
-        <nav className="splash-footer-session">
-            <ul>
+          <ul className="footer-session-links">
             <li><Link className="signup-link"
                       to="/signup">Sign up</Link></li>
             <li><Link className="login-link"

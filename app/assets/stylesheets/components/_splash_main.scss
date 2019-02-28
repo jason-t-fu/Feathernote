@@ -1,6 +1,6 @@
 .splash-main {
   
-  .full-width {
+  .full-width-hero {
     background: $green image_url('main-green.png');
   }
 
@@ -59,4 +59,42 @@
       }
     }
   }
+
+  .full-width-cards {
+    background-color: $darkwhite;
+
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 0;
+      
+      .focus-icon {
+        width: 105px;
+        height: 119px;
+      }
+
+      h2 {
+        margin: 100px 0;
+        font-size: 54px;
+        line-height: 64px;
+        font-weight: 500;
+      }
+
+      .cards {
+        display: flex;
+        justify-content: space-between;
+        color: $gray;
+        font-size: 32px;
+        font-weight: 100;
+        line-height: 60px;
+
+        > div {
+          padding: 0 40px;
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+  
 }

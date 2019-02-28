@@ -66,8 +66,9 @@
 | column name   | data type | details                        |
 |---------------|-----------|--------------------------------|
 | `id`          | integer   | not null, primary key          |
-| `tag_id`      | string    | not null, indexed, foreign key |
+| `tag_id`      | integer   | not null, indexed, foreign key |
 | `note_id`     | integer   | not null, indexed, foreign key |
+| `owner_id`    | integer   | not null, indexed, foreign key |
 | `created_at`  | date      | not null                       |
 | `modified_at` | date      | not null                       |
 

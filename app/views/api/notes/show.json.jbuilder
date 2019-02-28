@@ -1,0 +1,1 @@
+json.partial! "api/notes/show", note: @note

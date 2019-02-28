@@ -10,12 +10,16 @@ const SessionForm = props => {
   };
 
   useEffect(() => {
-    if (props.errors.length !== 0) {
-      props.clearErrors();
-    }
+    // if (props.errors.length !== 0) {
+    //   props.clearErrors();
+    // }
 
     if (props.demo) {
       startDemo();
+    }
+
+    return () => {
+      props.clearErrors();
     }
   }, []);
 

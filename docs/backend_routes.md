@@ -6,7 +6,7 @@
 ## API Endpoints
 
 ### `users`
-* `GET /api/users` - returns the user information of displayed chirps and for the User Search feature
+* `GET /api/users` - returns the user information
 * `POST /api/users` - sign up
 
 ### `session`

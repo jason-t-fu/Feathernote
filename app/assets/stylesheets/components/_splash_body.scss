@@ -1,0 +1,61 @@
+.splash-main {
+  
+  .full-width {
+    background: $green url('main-green.png');
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    padding: 120px 0 140px 0;
+    margin: 0 auto;
+    color: white;
+
+    .content {
+      max-width: 530px;
+      width: 50%;
+      h1 {
+        font-size: 56px;
+        line-height: 75px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .description {
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 40px;
+        margin-bottom: 40px;
+      }
+
+      a {
+        background-color: $white;
+        color: $green;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        min-width: 240px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 18px 36px;
+        border-radius: 3px;
+      }
+
+      a:hover {
+        background-color: $darkwhite;
+        transition: background-color .1s ease-in-out;
+      }
+    }
+
+    .hero-image {
+      width: 50%;
+      padding-left: 40px;
+      img {
+        height: auto;
+        max-width: 100%;
+        width: auto;
+      }
+    }
+  }
+}

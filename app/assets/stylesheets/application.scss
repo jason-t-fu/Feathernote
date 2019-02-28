@@ -12,3 +12,19 @@
  *
  *= require_self
  */
+
+ // CSS Reset
+ @import "base/reset.scss";
+
+ // Core
+ @import "base/colors.scss";
+ @import "base/fonts.scss";
+ @import "base/layout.scss";
+ @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700');
+ @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+ // Grid
+ @import "base/grid.scss";
+
+ //Components
+ @import "./static_pages.scss";
+ @import "components/*";

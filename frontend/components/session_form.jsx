@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const SessionForm = props => {
   const [email, setEmail] = useState(props.user.email);
   const [password, setPassword] = useState(props.user.password);
+  const [demoDisabled, setDemoDisabled] = useState(false);
+  const demoUser = {
+    email: "admin@feathernote.com",
+    password: "password"
+  };
 
   useEffect(() => {
     if (props.errors.length !== 0) {
@@ -11,9 +15,7 @@ const SessionForm = props => {
     }
 
     if (props.demo) {
-      fillField('email', setEmail)
-        .then(() => fillField('password', setPassword))
-        .then(() => handleSubmit(props.demo));
+      startDemo();
     }
   }, []);
 
@@ -30,21 +32,32 @@ const SessionForm = props => {
   })
 
   function handleSubmit(user) {
-    props.action(user);
+    if (props.loginDemoUser) {
+      props.loginDemoUser(user)
+    } else {
+      props.action(user);
+    }
   }
 
   // fillUsername.then(fillPassword).then(handleSubmit);
   // fillUsername returns a promise, calls fillPassword.
   // fillPassword also returns a promise, then calls handleSubmit.
 
+  const startDemo = () => {
+    fillField('email', setEmail)
+      .then(() => fillField('password', setPassword))
+      .then(() => handleSubmit(demoUser));
+  }
+
   const fillField = (fieldName, setCallback) => {
+    setDemoDisabled(true);
     return new Promise( (resolve, reject) => {
       let i = 0;
-      let intervalId = window.setInterval(fillInterval, 100);
+      let intervalId = window.setInterval(fillInterval, 75);
       function fillInterval() {
         i++;
-        setCallback(props.demo[fieldName].slice(0, i));
-        if (i > props.demo[fieldName].length) {
+        setCallback(demoUser[fieldName].slice(0, i));
+        if (i > demoUser[fieldName].length) {
           intervalId = window.clearInterval(intervalId);
           resolve();
         }
@@ -61,11 +74,13 @@ const SessionForm = props => {
           <div className="feathernote-tagline">Remember everything important.</div>
         </div>
 
-        <form className={`session-form`} disabled={props.demo}>
-          <button className="demo-form-submit">
-            <Link to={{ pathname: "/login", state: true }} >
+        <form className={`session-form`} disabled={demoDisabled}>
+          <button className="demo-form-submit"
+                  onClick={startDemo}>
+            {/* <Link to={{ pathname: "/login", state: true }} >
               Demo Login
-            </Link>
+            </Link> */}
+            Demo Login
           </button>
           
           <div className="horizontal-text">or</div>
@@ -84,7 +99,7 @@ const SessionForm = props => {
           {credentialErrors}
           <button className="session-form-submit" 
                   onClick={() => handleSubmit({email, password})}
-                  disabled={props.demo} >
+                  disabled={demoDisabled} >
             Continue
           </button>
           <div className="link-to">{props.formType}</div>

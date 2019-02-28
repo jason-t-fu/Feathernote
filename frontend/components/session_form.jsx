@@ -74,7 +74,9 @@ const SessionForm = props => {
           <div className="feathernote-tagline">Remember everything important.</div>
         </div>
 
-        <form className={`session-form`} disabled={demoDisabled}>
+        <form className={`session-form`} 
+              disabled={demoDisabled}
+              onSubmit={() => handleSubmit({email,password})}>
           <button type="button"
                   className="demo-form-submit"
                   onClick={startDemo}>
@@ -98,9 +100,7 @@ const SessionForm = props => {
                 id="password-input"
                 onChange={event => setPassword(event.currentTarget.value)} />
           {credentialErrors}
-          <button className="session-form-submit" 
-                  onClick={() => handleSubmit({email, password})}
-                  disabled={demoDisabled} >
+          <button className="session-form-submit">
             Continue
           </button>
           <div className="link-to">{props.formType}</div>

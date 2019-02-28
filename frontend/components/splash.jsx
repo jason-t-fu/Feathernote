@@ -63,9 +63,9 @@ const Splash = props => {
         </div>
         <div className="full-width-cards">
           <div className="info-cards limit-width">
-            <img class="focus-icon" src={window.images.focus} />
+            <img className="focus-icon" src={window.images.focus} />
             <h2>Focus on what matters most</h2>
-            <div class="cards">
+            <div className="cards">
               <div>
                 Manage everything from big projects to personal moments.
                 </div>

@@ -8,10 +8,12 @@ const Splash = props => {
     return (
       <header className="splash-header-container">
         <header className="splash-header limit-width">
-          <div className="splash-header-logo">
-            <img className="splash-header-img" src={window.images.logo} />
-            <div className="splash-header-title">Feathernote</div>
-          </div>
+          <Link to="/">
+            <div className="splash-header-logo">
+              <img className="splash-header-img" src={window.images.logo} />
+              <div className="splash-header-title">Feathernote</div>
+            </div>
+          </Link>
 
           <nav className="splash-header-nav">
             <ul>
@@ -24,9 +26,13 @@ const Splash = props => {
 
           <nav className="splash-header-session">
             <ul>
-              <Link to="/signup"><li>Sign up</li></Link>
-              <li>or</li>
-              <Link to="/login"><li>Log in</li></Link>
+              <li><Link className="signup-link"
+                        to="/signup">Sign up</Link></li>
+              <li><Link className="login-link"
+                        to="/login">Log in</Link></li>
+              <li><Link className="login-link"
+                        to={{ pathname: "/login", state: true }}>
+                        Demo Login</Link></li>
             </ul>
           </nav>
 
@@ -67,90 +73,25 @@ const Splash = props => {
           <img className="splash-footer-img" src={window.images.logo} />
           <div className="splash-footer-title">Feathernote</div>
         </div>
-
-        <nav className="footer-nav">
-          <div className="nav-section">
-            <div className="nav-section-header">
-              Product
-            </div>
-            <ul>
-              <li>Why Evernote</li>
-              <li>Evernote Basic</li>
-              <li>Everote Premium</li>
-              <li>Evernote Business</li>
-              <li>Compare Plans</li>
-              <li>Student Discount</li>
-              <li>Download App</li>
-            </ul>
-          </div>
-          <div className="nav-section">
-            <div className="nav-section-header">
-              Features
-            </div>
-            <ul>
-              <li>Web Clipper</li>
-              <li>Template</li>
-              <li>Spaces</li>
-              <li>Integrations</li>
-              <li>Notes Sync</li>
-              <li>PDF & Doc Search</li>
-              <li>Search Handwriting</li>
-              <li>Document Scanning</li>
-              <li>Notebooks & Tags</li>
-            </ul>
-          </div>
-          <div className="nav-section">
-            <div className="nav-section-header">
-              Community
-            </div>
-            <ul>
-              <li>Our Community</li>
-              <li>Certified Consultants</li>
-              <li>Developers</li>
-              <li>Events</li>
-              <li>Forum</li>
-            </ul>
-          </div>
-          <div className="nav-section">
-            <div className="nav-section-header">
-              Support
-            </div>
-            <ul>
-              <li>Help & Learning</li>
-              <li>Troubleshooting</li>
-              <li>Blong</li>
-            </ul>
-          </div>
-          <div className="nav-section">
-            <div className="nav-section-header">
-              Company
-            </div>
-            <ul>
-              <li>About Us</li>
-              <li>Press</li>
-              <li>Careers</li>
-              <li>Inclusion & Diversity</li>
-              <li>Contact Us</li>
-            </ul>
-          </div>
-          <div className="nav-section">
-            <div className="footer-signup-login">
-              <ul>
-                <Link to="/signup"><li>Sign up</li></Link>
-                <li>or</li>
-                <Link to="/login"><li>Log in</li></Link>
-                <Link to={{pathname: "/login", state: true}} >
-                  <li>Demo</li>
-                </Link>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <nav className="footer-info">
+        <nav className="splash-footer-info">
           <ul>
-            <li>Github</li>
-            <li>LinkedIn</li>
-            <li>Email</li>
+            <li><a href="https://github.com/jason-t-fu">
+              <i className="fab fa-3x fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/fujasont">
+              <i className="fab fa-3x fa-linkedin-in"></i></a></li>
+            <li><a href="#">
+              <i className="fas fa-3x fa-at"></i></a></li>
+          </ul>
+        </nav>
+        <nav className="splash-footer-session">
+            <ul>
+            <li><Link className="signup-link"
+                      to="/signup">Sign up</Link></li>
+            <li><Link className="login-link"
+                      to="/login">Log in</Link></li>
+            <li><Link className="login-link"
+                      to={{ pathname: "/login", state: true }}>
+                      Demo Login</Link></li>
           </ul>
         </nav>
       </footer>

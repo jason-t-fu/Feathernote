@@ -75,7 +75,8 @@ const SessionForm = props => {
         </div>
 
         <form className={`session-form`} disabled={demoDisabled}>
-          <button className="demo-form-submit"
+          <button type="button"
+                  className="demo-form-submit"
                   onClick={startDemo}>
             {/* <Link to={{ pathname: "/login", state: true }} >
               Demo Login

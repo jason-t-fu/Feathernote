@@ -57,35 +57,35 @@
       font-weight: 300;
       letter-spacing: 0.5px;
 
-      a,
-      > li {
-        margin-left: 12px;
+      li,
+      > a {
+        margin-left: 16px;
       }
 
-      a:first-child {
+      .signup-link {
         color: $green;
         font-size: 16px;
         transition: color .1s ease-in-out;
       }
 
-      a:first-child:hover {
+      .signup-link:hover {
         color: $lightgreen;
       }
 
-      a:last-child {
-        height: 40px;
+      .login-link {
         min-width: 120px;
         line-height: 37px;
         text-align: center;
         font-size: 14px;
         color: $green;
         font-weight: 500;
+        padding: 12px 28px;
         border: 2px solid $green;
         border-radius: 3px;
         transition: color 0.1s, border-color 0.1s, ease-in-out;
       }
 
-      a:last-child:hover {
+      .login-link:hover {
         color: $lightgreen;
         border-color: $lightgreen;
       }

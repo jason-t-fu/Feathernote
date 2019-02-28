@@ -11,26 +11,12 @@ const SessionForm = props => {
     }
 
     if (props.demo) {
-      debugger;
-      handleSubmit();
+      fillField('email', setEmail)
+        .then(() => fillField('password', setPassword))
+        .then(() => handleSubmit(props.demo));
     }
   }, []);
 
-  let linkToOtherForm;
-  if (props.formType === "signup") {
-    linkToOtherForm =
-      <>
-        <label name="link-to">Already have an account?</label>
-        <Link name="link-to" to="/login">Log In</Link>
-      </>
-  }
-  else {
-    linkToOtherForm =
-      <>
-        <label name="link-to">Don't have an account?</label>
-        <Link name="link-to" to="/signup">Sign Up</Link>
-      </>
-  }
   let emailErrors = [];
   let credentialErrors = [];
   props.errors.forEach( error => {
@@ -43,9 +29,27 @@ const SessionForm = props => {
     }
   })
 
-  function handleSubmit(){
-    const user = {email, password};
+  function handleSubmit(user) {
     props.action(user);
+  }
+
+  // fillUsername.then(fillPassword).then(handleSubmit);
+  // fillUsername returns a promise, calls fillPassword.
+  // fillPassword also returns a promise, then calls handleSubmit.
+
+  const fillField = (fieldName, setCallback) => {
+    return new Promise( (resolve, reject) => {
+      let i = 0;
+      let intervalId = window.setInterval(fillInterval, 100);
+      function fillInterval() {
+        i++;
+        setCallback(props.demo[fieldName].slice(0, i));
+        if (i > props.demo[fieldName].length) {
+          intervalId = window.clearInterval(intervalId);
+          resolve();
+        }
+      }
+    });
   }
 
   return (
@@ -57,11 +61,12 @@ const SessionForm = props => {
           <div className="feathernote-tagline">Remember everything important.</div>
         </div>
 
-        <form className={`session-form`}>
-          <Link to={{ pathname: "/login", state: true }} 
-                      className="demo-form-submit">
-            Demo Login
-          </Link>
+        <form className={`session-form`} disabled={props.demo}>
+          <button className="demo-form-submit">
+            <Link to={{ pathname: "/login", state: true }} >
+              Demo Login
+            </Link>
+          </button>
           
           <div className="horizontal-text">or</div>
           
@@ -69,17 +74,20 @@ const SessionForm = props => {
                 value={email}
                 placeholder="Email"
                 id="email-input"
-                onChange={event => setEmail(event.target.value)} />
+                onChange={event => setEmail(event.currentTarget.value)} />
           {emailErrors}
           <input type="password"
+                value={password}
                 placeholder="Password"
                 id="password-input"
-                onChange={event => setPassword(event.target.value)} />
+                onChange={event => setPassword(event.currentTarget.value)} />
           {credentialErrors}
-          <button className="session-form-submit" onClick={handleSubmit} >
+          <button className="session-form-submit" 
+                  onClick={() => handleSubmit({email, password})}
+                  disabled={props.demo} >
             Continue
           </button>
-          <div className="link-to">{linkToOtherForm}</div>
+          <div className="link-to">{props.formType}</div>
         </form>
       </div>
     </div>

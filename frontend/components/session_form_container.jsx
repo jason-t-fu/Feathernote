@@ -1,20 +1,29 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
 import { login, clearErrors } from '../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const user = ownProps.location.state ? 
+  const demoUser = ownProps.location.state ? 
     (
-      {email: "admin@feathernote.com", password: "password"}
+      { email: "admin@feathernote.com", password: "password" }
     ) : (
-      {email: "", password: ""}
+      null
     );
 
   return {
-    user: user,
-    formType: "login",
+    user: {
+      email: "",
+      password: ""
+    },
+    formType: (<>
+                <label name="link-to">Don't have an account?</label>
+                <Link name="link-to" to="/signup">Sign Up</Link>
+              </>
+    ),
     errors: Object.values(state.errors.session),
-    demo: Boolean(ownProps.location.state)
+    demo: demoUser
   };
 };
 

@@ -1,4 +1,6 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
 import { signup, clearErrors } from '../actions/session_actions';
 
@@ -8,7 +10,11 @@ const mapStateToProps = state => {
       email: "",
       password: ""
     },
-    formType: "signup", 
+    formType: (<>
+                <label name="link-to">Already have an account?</label>
+                <Link name="link-to" to="/login">Log In</Link>
+              </>
+    ),
     errors: Object.values(state.errors.session),
     demo: false
   };

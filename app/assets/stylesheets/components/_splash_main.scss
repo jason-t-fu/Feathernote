@@ -1,12 +1,13 @@
 .splash-main {
   
   .full-width {
-    background: $green url('main-green.png');
+    background: $green image_url('main-green.png');
   }
 
   .hero {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 120px 0 140px 0;
     margin: 0 auto;
     color: white;

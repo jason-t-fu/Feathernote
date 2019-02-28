@@ -3,11 +3,15 @@ import SessionForm from './session_form';
 import { login, clearErrors } from '../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  const user = ownProps.location.state ? 
+    (
+      {email: "admin@feathernote.com", password: "password"}
+    ) : (
+      {email: "", password: ""}
+    );
+
   return {
-    user: {
-      email: "",
-      password: ""
-    },
+    user: user,
     formType: "login",
     errors: Object.values(state.errors.session),
     demo: Boolean(ownProps.location.state)

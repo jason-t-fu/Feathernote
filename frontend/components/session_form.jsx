@@ -9,6 +9,11 @@ const SessionForm = props => {
     if (props.errors.length !== 0) {
       props.clearErrors();
     }
+
+    if (props.demo) {
+      debugger;
+      handleSubmit();
+    }
   }, []);
 
   let linkToOtherForm;
@@ -38,8 +43,7 @@ const SessionForm = props => {
     }
   })
 
-  function handleSubmit(event){
-    event.preventDefault();
+  function handleSubmit(){
     const user = {email, password};
     props.action(user);
   }
@@ -54,7 +58,10 @@ const SessionForm = props => {
         </div>
 
         <form className={`session-form`}>
-          <button className="demo-form-submit">Demo Login</button>
+          <Link to={{ pathname: "/login", state: true }} 
+                      className="demo-form-submit">
+            Demo Login
+          </Link>
           
           <div className="horizontal-text">or</div>
           
@@ -69,7 +76,7 @@ const SessionForm = props => {
                 id="password-input"
                 onChange={event => setPassword(event.target.value)} />
           {credentialErrors}
-          <button className="session-form-submit" onSubmit={handleSubmit} >
+          <button className="session-form-submit" onClick={handleSubmit} >
             Continue
           </button>
           <div className="link-to">{linkToOtherForm}</div>

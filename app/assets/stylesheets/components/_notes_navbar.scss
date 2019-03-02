@@ -1,0 +1,74 @@
+.notes-navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 75px;
+  background-color: $darkwhite;
+  padding: 10px;
+  border-right: 1px solid $lightestgray;
+
+  .notes-navbar-inner {
+    width: 42px;
+    
+    .icon-container {
+      width: 100%;
+      height: 42px;
+      padding: 10px;
+      margin: 10px 0px;
+      color: $green;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      
+      img {
+        width: 36px;
+        height: 36px;
+      }
+      
+      i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        font-size: 20px;
+        text-align: center;
+        padding: 25%;
+      }
+    }
+
+    .profile,
+    .new-note {
+      border: 1px solid $green;
+    }
+  }
+
+  .notes-navbar-inner:last-child {
+    height: 50%;
+
+    .icon-container {
+      position: absolute;
+      width: inherit;
+      bottom: 0;
+    }
+  }
+
+  .index,
+  .profile,
+  .new-note {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    overflow: hidden;
+  }
+  .index:hover,
+  .profile:hover,
+  .new-note:hover {
+    background: $green;
+    color: $white;
+  }
+
+}

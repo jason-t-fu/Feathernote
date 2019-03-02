@@ -1,0 +1,14 @@
+.note-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .ql-snow,
+  .ql-toolbar {
+    border-top: none;
+  }
+
+  .ql-container {
+
+  }
+}

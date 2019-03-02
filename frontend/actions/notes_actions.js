@@ -27,7 +27,6 @@ const removeNote = noteId => {
 };
 
 const receiveErrors = errors => {
-  debugger;
   return {
     type: RECEIVE_NOTES_ERRORS,
     errors

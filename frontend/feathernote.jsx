@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import setCurrentUser from './util/set_current_user';
 import Root from './root';
-import * as SessionActions from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const store = setCurrentUser(configureStore);
@@ -13,5 +12,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.SessionActions = SessionActions;
 });

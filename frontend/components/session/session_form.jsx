@@ -10,9 +10,6 @@ const SessionForm = props => {
   };
 
   useEffect(() => {
-    // if (props.errors.length !== 0) {
-    //   props.clearErrors();
-    // }
 
     if (props.demo) {
       startDemo();
@@ -35,8 +32,8 @@ const SessionForm = props => {
     }
   })
 
-  function handleSubmit(user) {
-    if (demoDisabled) {
+  const handleSubmit = (user) => {
+    if (props.loginDemoUser) {
       props.loginDemoUser(user)
     } else {
       props.action(user);
@@ -48,6 +45,7 @@ const SessionForm = props => {
   // fillPassword also returns a promise, then calls handleSubmit.
 
   const startDemo = () => {
+    setDemoDisabled(true);
     fillField('email', setEmail)
       .then(() => fillField('password', setPassword))
       .then(() => handleSubmit(demoUser));
@@ -57,7 +55,7 @@ const SessionForm = props => {
     setDemoDisabled(true);
     return new Promise( (resolve, reject) => {
       let i = 0;
-      let intervalId = window.setInterval(fillInterval, 75);
+      let intervalId = window.setInterval(fillInterval, 60);
       function fillInterval() {
         i++;
         setCallback(demoUser[fieldName].slice(0, i));
@@ -69,6 +67,8 @@ const SessionForm = props => {
     });
   }
 
+  //if on signup link to login
+  //if on login do demologin
   return (
     <div className="form-wrapper">
       <div className="form-frame">

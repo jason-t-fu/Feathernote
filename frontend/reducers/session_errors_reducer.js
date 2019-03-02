@@ -1,5 +1,7 @@
-import { RECEIVE_ERRORS, RECEIVE_USER, LOGOUT_USER } from '../actions/session_actions';
-import { CLEAR_ERRORS } from '../actions/session_actions';
+import { RECEIVE_ERRORS, 
+         RECEIVE_USER, 
+         LOGOUT_USER, 
+         CLEAR_ERRORS } from '../actions/session_actions';
 
 const _nullErrors = [];
 

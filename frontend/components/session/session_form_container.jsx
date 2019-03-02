@@ -5,13 +5,6 @@ import SessionForm from './session_form';
 import { login, clearErrors } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const demoUser = ownProps.location.state ? 
-    (
-      { email: "admin@feathernote.com", password: "password" }
-    ) : (
-      null
-    );
-
   return {
     user: {
       email: "",
@@ -23,7 +16,13 @@ const mapStateToProps = (state, ownProps) => {
               </>
     ),
     errors: Object.values(state.errors.session),
-    demo: demoUser
+    demo: ownProps.location.state,
+    demoLink: <button type="button"
+                      id="demo"
+                      className="demo-form-submit"
+                      >
+                Demo Login
+              </button>
   };
 };
 

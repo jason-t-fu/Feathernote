@@ -10,9 +10,10 @@ const SessionForm = props => {
   };
 
   useEffect(() => {
+    document.getElementById('demo').onclick = startDemo
 
     if (props.demo) {
-      startDemo();
+      document.getElementById('demo').click();
     }
 
     return () => {
@@ -32,12 +33,8 @@ const SessionForm = props => {
     }
   })
 
-  const handleSubmit = (user) => {
-    if (props.loginDemoUser) {
-      props.loginDemoUser(user)
-    } else {
-      props.action(user);
-    }
+  const handleSubmit = user => {
+    props.action(user);
   }
 
   // fillUsername.then(fillPassword).then(handleSubmit);
@@ -80,15 +77,9 @@ const SessionForm = props => {
 
         <form className={`session-form`} 
               disabled={demoDisabled}
-              onSubmit={() => handleSubmit({email,password})}>
-          <button type="button"
-                  className="demo-form-submit"
-                  onClick={startDemo}>
-            {/* <Link to={{ pathname: "/login", state: true }} >
-              Demo Login
-            </Link> */}
-            Demo Login
-          </button>
+              onSubmit={() => handleSubmit({email, password})}>
+          
+          {props.demoLink}
           
           <div className="horizontal-text">or</div>
           

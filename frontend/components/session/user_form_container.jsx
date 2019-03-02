@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
-import { signup, login, clearErrors } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   return {
@@ -16,14 +16,18 @@ const mapStateToProps = state => {
               </>
     ),
     errors: Object.values(state.errors.session),
-    demo: false
+    demo: false,
+    demoLink: <Link id="demo" 
+                    className="demo-form-submit"
+                    to={{ pathname: "/login", state: true }} >
+                Demo Login
+              </Link>
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     action: user => dispatch(signup(user)),
-    loginDemoUser: user => dispatch(login(user)),
     clearErrors: () => dispatch(clearErrors())
   };
 };

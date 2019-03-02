@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../actions/notes_actions';
 import NotesIndex from './notes_index';
+import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllNotes: () => dispatch(fetchAllNotes())
+    fetchAllNotes: () => dispatch(fetchAllNotes()),
+    logout: () => dispatch(logout())
   };
 };
 

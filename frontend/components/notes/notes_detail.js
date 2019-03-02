@@ -12,7 +12,7 @@ const NotesDetail = () => {
   }, []);
 
   return (
-    <section class="note-detail">
+    <section className="note-detail">
       <div id="editor">
         <p>Hello World!</p>
         <p>Some initial <strong>bold</strong> text</p>

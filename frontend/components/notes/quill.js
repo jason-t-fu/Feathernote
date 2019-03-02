@@ -8,7 +8,7 @@ import Italic from 'quill/formats/italic';
 import Header from 'quill/formats/header';
 import Underline from 'quill/formats/underline';
 import Link from 'quill/formats/link';
-import List from 'quill/formats/list';
+import List, { ListItem } from 'quill/formats/list';
 
 Quill.register({
   'modules/toolbar': Toolbar,
@@ -18,7 +18,8 @@ Quill.register({
   'formats/underline': Underline,
   'formats/header': Header,
   'formats/link': Link,
-  'formats/list': List
+  'formats/list': List,
+  'formats/list/item': ListItem
 });
 
 

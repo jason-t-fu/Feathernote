@@ -20,7 +20,7 @@ const NotesIndex = props => {
 
   return (
     <main className="notes">
-      <NotesNavbar />
+      <NotesNavbar logout={props.logout}/>
    
       <aside className="notes-index">
         <div className="notes-header">

@@ -118,7 +118,6 @@ const Splash = props => {
       {header()}
       {main()}
       {footer()}
-      <button onClick={() => props.logout()}>Placeholder Logout</button>
     </div>
 
   );

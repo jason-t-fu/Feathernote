@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const SessionForm = props => {
   const [email, setEmail] = useState(props.user.email);
@@ -70,9 +71,11 @@ const SessionForm = props => {
     <div className="form-wrapper">
       <div className="form-frame">
         <div className="form-header">
-          <img className="feathernote-logo" src={window.images.logo} />
-          <div className="feathernote-title">Feathernote</div>
-          <div className="feathernote-tagline">Remember everything important.</div>
+          <Link className="to-splash" to="/">
+            <img className="unselectable feathernote-logo" src={window.images.logo} />
+            <div className="unselectable feathernote-title">Feathernote</div>
+          </Link>
+          <div className="unselectable feathernote-tagline">Remember everything important.</div>
         </div>
 
         <form className={`session-form`} 

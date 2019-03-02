@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotesNavbar = () => {
+const NotesNavbar = ({ logout }) => {
 
   return (
     <nav className="notes-navbar">
@@ -24,7 +24,8 @@ const NotesNavbar = () => {
         </div>
       </div>
       <div className="notes-navbar-inner">
-        <div className="profile icon-container">
+        <div className="profile icon-container"
+             onClick={logout}>
           <i className="fas fa-user"></i>
         </div>
       </div>

@@ -6,7 +6,9 @@ import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
   return {
-    notes: Object.values(state.entities.notes),
+    notes: Object.values(state.entities.notes).sort(
+      (a, b) => (Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
+    ),
     loading: state.ui.loading
   };
 };

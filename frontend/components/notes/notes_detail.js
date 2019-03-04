@@ -1,29 +1,5 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
-
-const toolbar = [
-  [{ 'font': [] }],                                 // dropdown with defaults from theme
-  [{ 'color': [] }, { 'background': [] }],
-
-  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
-
-  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-  [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-  [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-  [{ 'direction': 'rtl' }],                         // text direction
-
-  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-  [{ 'align': [] }],
-
-  ['clean']                                         // remove formatting button
-];
-
-const modules = {
-  toolbar
-};
+import QuillEditor from './quill_editor';
 
 /*
   After the fetchAllNotes AJAX request from the Notes Index, the Notes Detail 
@@ -45,28 +21,26 @@ const modules = {
   to update the local state by the new props passed in through the container.
 */
 
-
-
 class NotesDetail extends React.Component {
   constructor(props) {
     super(props);
 
-    this.createNote = this.createNote.bind(this);
+    this.createNoteObject = this.createNoteObject.bind(this);
     this.bodyToObject = this.bodyToObject.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.bodyToText = this.bodyToText.bind(this);
-    this.attachQuillRefs = this.attachQuillRefs.bind(this);
+    // this.attachQuillRefs = this.attachQuillRefs.bind(this);
 
     this.state = {
       title: this.props.note.title,
       body: this.bodyToObject()
     };
 
-    this.quillRef = null;
-    this.reactQuillRef = null;
+    // this.quillRef = null;
+    // this.reactQuillRef = null;
   }
 
-  createNote(noteId) {
+  createNoteObject(noteId) {
     return {
       id: noteId,
       title: this.state.title,
@@ -77,31 +51,25 @@ class NotesDetail extends React.Component {
   handleChange(content, delta, source, editor) {
     this.setState({ body: editor.getContents() });
   }
-    
-  componentDidMount() {
-    console.log('mounted');
-    this.attachQuillRefs();
-  }
 
   componentDidUpdate(prevProps) {
-    console.log('updated');
     let previousNoteId = prevProps.match.params.noteId;
     let currentNoteId = this.props.match.params.noteId;
+    
     if (currentNoteId !== previousNoteId) {
       if (this.bodyToText() !== prevProps.note.body) {
-        prevProps.updateNote(this.createNote(previousNoteId));
+        prevProps.updateNote(this.createNoteObject(previousNoteId));
       }
       this.setState({ 
         title: this.props.note.title,
         body: this.bodyToObject()
       });
     }
-    this.attachQuillRefs();
   }
 
   componentWillUnmount() {
     if (this.bodyToText() !== this.props.note.body) {
-      this.props.updateNote(this.createNote(this.props.match.params.noteId));
+      this.props.updateNote(this.createNoteObject(this.props.match.params.noteId));
     }
   }
 
@@ -113,30 +81,23 @@ class NotesDetail extends React.Component {
     return JSON.stringify(this.state.body);
   }
 
-  attachQuillRefs(){
-    if (typeof this.reactQuillRef.getEditor !== 'function') return;
-    this.quillRef = this.reactQuillRef.getEditor();
-  }
-
   render() {
     return (
       <section className="note-detail">
         <form className="note-title-input">
           <input type="text"
                  onChange={(e) => this.setState({ title: e.target.value })}
-                 value={this.state.title} 
+                 value={this.state.title}
+                 placeholder="Title your note"
                 />
         </form>
-        <div></div>
+        
         <div id="editor">
-          <ReactQuill id="quill-editor"
-                      ref={el => this.reactQuillRef = el}
-                      value={this.state.body}
-                      modules={modules}
-                      onChange={this.handleChange}
-                      defaultValue={this.bodyToObject()}
-                    >
-          </ReactQuill>
+          <QuillEditor value={this.state.body}
+                       onChange={this.handleChange}
+                       defaultValue={this.bodyToObject()}
+                       placeholder={this.props.placeholder} >
+          </QuillEditor>
         </div>
       </section>
     )

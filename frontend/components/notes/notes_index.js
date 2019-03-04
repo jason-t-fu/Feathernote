@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import NotesIndexItem from './notes_index_item';
-import { Route } from 'react-router-dom';
+import NotesIndexItemContainer from './notes_index_item_container';
+import { Switch, Route } from 'react-router-dom';
 import NotesNavbar from './notes_navbar';
 import NotesDetailContainer from './notes_detail_container';
+import NotesCreateContainer from './notes_create_container';
 
 const NotesIndex = props => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const NotesIndex = props => {
   if (props.loading){
     return (<div className="loading"></div>);
   }
+
   return (
     <main className="notes">
       <NotesNavbar logout={props.logout}/>
@@ -34,17 +36,17 @@ const NotesIndex = props => {
         </div>
         <ul className="notes-list">
           {props.notes.map(note => {
-              return <NotesIndexItem key={note.id} 
+              return <NotesIndexItemContainer key={note.id} 
                                      note={note} 
                                      push={props.history.push}/>
             }
           )}
         </ul>
       </aside>
-      <Route
-        path="/notes/:noteId"
-        component={NotesDetailContainer}
-      />
+      <Switch>
+        <Route exact path="/notes/new" component={NotesCreateContainer} />
+        <Route path="/notes/:noteId" component={NotesDetailContainer} />
+      </Switch>
     </main>
   )
 };

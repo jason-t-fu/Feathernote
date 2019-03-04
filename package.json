@@ -5,9 +5,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "@types/quill": "^2.0.2",
     "babel-loader": "^8.0.5",
-    "html-loader": "^0.5.5",
     "lodash": "^4.17.11",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -17,8 +15,6 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3333",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
@@ -38,6 +34,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development",
+    "webpack": "webpack",
     "webpack:p": "webpack --watch --mode=production",
     "postinstall": "webpack"
   },

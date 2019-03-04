@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import NotesIndexItem from './notes_index_item';
 import { Route } from 'react-router-dom';
 import NotesNavbar from './notes_navbar';
-import NotesDetail from './notes_detail';
+import NotesDetailContainer from './notes_detail_container';
 
 const NotesIndex = props => {
-
   useEffect(() => {
     props.fetchAllNotes().then(
       res => {
@@ -18,6 +17,9 @@ const NotesIndex = props => {
     
   }, []);
 
+  if (props.loading){
+    return (<div className="loading"></div>);
+  }
   return (
     <main className="notes">
       <NotesNavbar logout={props.logout}/>
@@ -31,12 +33,17 @@ const NotesIndex = props => {
           </div>
         </div>
         <ul className="notes-list">
-          {props.notes.map(note => <NotesIndexItem key={note.id} note={note}/>)}
+          {props.notes.map(note => {
+              return <NotesIndexItem key={note.id} 
+                                     note={note} 
+                                     push={props.history.push}/>
+            }
+          )}
         </ul>
       </aside>
       <Route
         path="/notes/:noteId"
-        component={NotesDetail}
+        component={NotesDetailContainer}
       />
     </main>
   )

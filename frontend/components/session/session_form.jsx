@@ -11,10 +11,13 @@ const SessionForm = props => {
   };
 
   useEffect(() => {
-    document.getElementById('demo').onclick = startDemo
+    const demoButton = document.getElementById('demo');
+    if (demoButton) {
+      demoButton.onclick = startDemo;
+    }
 
     if (props.demo) {
-      document.getElementById('demo').click();
+      demoButton.click();
     }
 
     return () => {

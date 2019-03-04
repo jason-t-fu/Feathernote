@@ -17,8 +17,7 @@ const mapStateToProps = state => {
     ),
     errors: Object.values(state.errors.session),
     demo: false,
-    demoLink: <Link id="demo" 
-                    className="demo-form-submit"
+    demoLink: <Link className="demo-form-submit"
                     to={{ pathname: "/login", state: true }} >
                 Demo Login
               </Link>

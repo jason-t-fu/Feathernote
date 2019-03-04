@@ -4,6 +4,7 @@ export const RECEIVE_ALL_NOTES = "RECEIVE_ALL_NOTES";
 export const RECEIVE_NOTE = "RECEIVE_NOTE";
 export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTES_ERRORS = "RECEIVE_NOTES_ERRORS";
+export const START_LOADING_ALL_NOTES = "START_LOADING_ALL_NOTES";
 
 const receiveAllNotes = notes => {
   return {
@@ -33,8 +34,15 @@ const receiveErrors = errors => {
   };
 };
 
+const startLoadingAllNotes = () => {
+  return {
+    type: START_LOADING_ALL_NOTES
+  };
+};
+
 export const fetchAllNotes = () => {
   return dispatch => {
+    dispatch(startLoadingAllNotes());
     return NotesApiUtil.fetchAllNotes().then(
       notes => dispatch(receiveAllNotes(notes)),
       errors => dispatch(receiveErrors(errors.responseJSON))

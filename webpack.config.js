@@ -7,12 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: 'bundle.js'
   },
-  resolve: {
-    alias: {
-      'quill$': path.resolve(__dirname, 'node_modules/quill/quill.js')
-    },
-    extensions: ['.js', 'svg']
-  },
   module: {
     rules: [
       {
@@ -24,8 +18,20 @@ module.exports = {
             presets: ['@babel/env', '@babel/react']
           }
         },
-      },
-      {
+      }, {
+        test: /\.ts$/,
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            compilerOptions: {
+              declaration: false,
+              target: 'es5',
+              module: 'commonjs'
+            },
+            transpileOnly: true
+          }
+        }]
+      }, {
         test: /\.svg$/,
         use: [{
           loader: 'html-loader',
@@ -38,6 +44,10 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '*']
+    alias: {
+      'parchment': path.resolve(__dirname, 'node_modules/parchment/src/parchment.ts'),
+      'quill$': path.resolve(__dirname, 'node_modules/quill/quill.js')
+    },
+    extensions: ['.js', '.jsx', '.ts', '.svg', '*']
   }
 };

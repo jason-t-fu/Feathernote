@@ -20,6 +20,13 @@ const receiveNote = note => {
   };
 };
 
+// const updateNote = note => {
+//   return {
+//     type: UPDATE_NOTE,
+//     note
+//   };
+// };
+
 const removeNote = noteId => {
   return {
     type: REMOVE_NOTE,
@@ -62,7 +69,7 @@ export const fetchNote = noteId => {
 export const createNote = note => {
   return dispatch => {
     return NotesApiUtil.createNote(note).then(
-      resNote => dispatch(receiveAllNotes(resNote)),
+      resNote => dispatch(receiveNote(resNote)),
       errors => dispatch(receiveErrors(errors.responseJSON))
     );
   };
@@ -71,7 +78,7 @@ export const createNote = note => {
 export const updateNote = note => {
   return dispatch => {
     return NotesApiUtil.updateNote(note).then(
-      resNote => dispatch(receiveAllNotes(resNote)),
+      (resNote) => dispatch(receiveNote(resNote)),
       errors => dispatch(receiveErrors(errors.responseJSON))
     );
   };

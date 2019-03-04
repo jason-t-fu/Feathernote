@@ -6,7 +6,7 @@ const NotesIndexItem = props => {
   const parseBodyToText = () => {
     let text = "";
     const bodyObject = JSON.parse(props.note.body);
-    
+
     bodyObject.forEach( entry => {
       text = text.concat(entry.insert);
     });

@@ -19,8 +19,7 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find_by(id: params[:id])
-
+    @note = Note.find_by(id: params[:note][:id])
     if @note.update(note_params)
       render :show
     else
@@ -38,6 +37,6 @@ class Api::NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id)
+    params.require(:note).permit(:id, :title, :body, :notebook_id)
   end
 end

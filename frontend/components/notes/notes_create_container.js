@@ -10,7 +10,7 @@ const _nullNote = {
 const mapStateToProps = (state, ownProps) => {
   return {
     note: _nullNote,
-    placeholder: "Just start typing!"
+    errors: state.errors.notes
   };
 };
 

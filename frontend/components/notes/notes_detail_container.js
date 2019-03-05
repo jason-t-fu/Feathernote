@@ -5,7 +5,7 @@ import { updateNote } from '../../actions/notes_actions';
 const mapStateToProps = (state, ownProps) => {
   return {
     note: state.entities.notes[ownProps.match.params.noteId],
-    placeholder: ""
+    errors: state.errors.notes
   };
 };
 

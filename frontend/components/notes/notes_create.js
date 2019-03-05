@@ -48,12 +48,14 @@ class NotesCreate extends React.Component {
     return (
       <section className="note-detail">
         <form className="note-create" onSubmit={this.handleSubmit}>
-          <button>Create Note</button>
+          <div>
+            <button>Create Note</button>
+            <span className="errors">{this.props.errors}</span>
+          </div>
           <input type="text"
                  onChange={(e) => this.setState({ title: e.target.value })}
                  value={this.state.title}
-                 placeholder="Title your note"
-          />
+                 placeholder="Title your note" />
         </form>
       
         <div id="editor">

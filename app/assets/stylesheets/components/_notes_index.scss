@@ -36,7 +36,7 @@
     overflow: scroll;
     .notes-index-item {
       padding: 15px 22px;
-      transition-duration: 0.2s;
+      transition-duration: 0.1s;
       transition-timing-function: ease-in-out;
       height: 130px;
 
@@ -68,6 +68,13 @@
         font-size: 14px;
         letter-spacing: 1px;
       }
+
+      i {
+        visibility: hidden;
+        z-index: 100;
+        color: $white;
+        cursor: pointer;
+      }
     }
 
     .notes-index-item:hover {
@@ -78,6 +85,10 @@
       .notes-index-item-body,
       .notes-index-item-date {
         color: $white;
+      }
+
+      i {
+        visibility: visible;
       }
     }
 

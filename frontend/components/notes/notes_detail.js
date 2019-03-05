@@ -93,6 +93,7 @@ class NotesDetail extends React.Component {
                  value={this.state.title}
                  placeholder="Title your note"
                 />
+          {this.props.errors}
         </form>
         
         <div id="editor">

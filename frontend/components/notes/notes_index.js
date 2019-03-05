@@ -19,8 +19,6 @@ const NotesIndex = props => {
         }
       }
     );
-
-    
   }, []);
 
   if (props.loading){

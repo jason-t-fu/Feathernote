@@ -21,13 +21,27 @@ const NotesIndex = props => {
     );
   }, []);
 
+  // useEffect(() => {
+  //   if (props.location.pathname == "/notes") {
+  //     debugger;
+  //     if (props.notes.length === 0){
+  //       props.history.push('/notes/new');
+  //     }
+  //     else {
+  //       props.history.push(`/notes/${props.notes[0].id}`);
+  //     }
+  //   }
+  // });
+
   if (props.loading){
     return (<div className="loading"></div>);
   }
 
   return (
     <main className="notes">
-      <NotesNavbar logout={props.logout} push={props.history.push}/>
+      <NotesNavbar logout={props.logout} 
+                   push={props.history.push}
+                   numNotes={props.notes.length} />
    
       <aside className="notes-index">
         <div className="notes-header">
@@ -42,7 +56,7 @@ const NotesIndex = props => {
               return <NotesIndexItemContainer key={note.id} 
                                      note={note}
                                      notes={props.notes}
-                                     push={props.history.push}/>
+                                     push={props.history.push} />
             }
           )}
         </ul>

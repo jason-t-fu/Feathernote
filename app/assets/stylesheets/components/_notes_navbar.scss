@@ -21,8 +21,9 @@
       color: $green;
       border-radius: 50%;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       cursor: pointer;
+      text-align: center;
       
       img {
         width: 36px;
@@ -30,15 +31,15 @@
       }
       
       .fas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        // bottom: 0;
+        // right: 0;
         margin: auto;
+        width: fit-content;
         font-size: 20px;
         text-align: center;
-        padding: 25%;
       }
     }
 
@@ -76,51 +77,51 @@
 .tooltip {
     display:inline-block;
     position:relative;
-    text-align:left;
 }
 
 .tooltip .right {
     min-width: fit-content;
     white-space: nowrap; 
-    top:50%;
-    left:100%;
-    margin-left:20px;
-    transform:translate(0, -50%);
-    padding:10px 20px;
-    color:#EEEEEE;
-    background-color:#444444;
-    font-weight:normal;
-    font-size:13px;
-    border-radius:4px;
-    position:absolute;
-    z-index:99999999;
-    box-sizing:border-box;
-    box-shadow:0 1px 8px rgba(0,0,0,0.5);
-    display:none;
+    top: 50%;
+    left: 100%;
+    margin-left: 25px;
+    transform: translate(0, -50%);
+    padding: 8px 15px;
+    color: #EEEEEE;
+    background-color: $darkgray;
+    font-weight: 300;
+    font-size: 14px;
+    // text-transform: uppercase;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 99999999;
+    box-sizing: border-box;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    display: none;
 }
 
-.tooltip:hover .right {
-    display:block;
+.icon-container:hover .right {
+    display: block;
 }
 
 .tooltip .right i {
-    position:absolute;
-    top:50%;
-    right:100%;
-    margin-top:-12px;
-    width:12px;
-    height:24px;
-    overflow:hidden;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -12px;
+    width: 12px;
+    height: 24px;
+    overflow: hidden;
 }
 
 .tooltip .right i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:0;
-    top:50%;
-    transform:translate(50%,-50%) rotate(-45deg);
-    background-color:#444444;
-    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    top: 50%;
+    transform: translate(50%,-50%) rotate(-45deg);
+    background-color: $darkgray;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }

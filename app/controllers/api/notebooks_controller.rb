@@ -11,7 +11,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = Notebook.find_by(id: params[:id])
+    @notebook = Notebook.find_by(id: params[:id]).includes(:notes)
   end
 
   def index
@@ -22,6 +22,7 @@ class Api::NotebooksController < ApplicationController
     @notebook = Notebook.find_by(id: params[:id])
 
     if @notebook.update(notebook_params)
+      @notebook = @notebook.includes(:notes)
       render "api/notebooks/show"
     else
       render json: @notebook.errors.full_messages, status: 422

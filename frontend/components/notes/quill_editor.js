@@ -31,14 +31,14 @@ class QuillEditor extends React.Component {
   }
   
   render() {
-    const { value, handleChange, initialState, placeholder } = this.props;
+    const { value, handleChange, initialState } = this.props;
     return (
       <ReactQuill id="quill-editor"
                   value={value}
                   modules={modules}
                   onChange={handleChange}
                   defaultValue={initialState}
-                  placeholder={placeholder}
+                  placeholder="Just start typing!"
                   >
       </ReactQuill>
     )

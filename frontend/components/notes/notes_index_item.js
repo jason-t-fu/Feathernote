@@ -15,7 +15,18 @@ const NotesIndexItem = props => {
 
   const handleDelete = (e) => {
     e.stopPropagation();
-    props.deleteNote(props.note.id);
+    props.deleteNote(props.note.id).then(
+      () => {
+        if (props.notes.length === 1) {
+          props.push('/notes/new');
+        }
+        else {
+          if (props.notes[0].id === props.note.id) {
+            props.push(`/notes/${props.notes[1].id}`);
+          }
+        }
+      }
+    );
   };
 
   const displayNote = () => {

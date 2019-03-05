@@ -1,0 +1,24 @@
+.note-create {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    display: inline-block;
+    padding: 10px 15px;
+    background: $textgreen;
+    color: $white;
+    border: 1px solid $textgreen;
+    border-radius: 4px;
+    font-weight: 300;
+    font-size: 14px;
+    width: fit-content;
+    transition-property: background;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+  }
+
+  button:hover {
+    background: $green;
+  }
+
+}

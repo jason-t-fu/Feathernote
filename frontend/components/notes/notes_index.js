@@ -11,7 +11,12 @@ const NotesIndex = props => {
       res => {
         const notes = Object.keys(res.notes);
         const postId = notes[notes.length - 1];
-        props.history.push(`/notes/${postId}`);
+        if (postId) {
+          props.history.push(`/notes/${postId}`);
+        }
+        else {
+          props.history.push('/notes/new');
+        }
       }
     );
 
@@ -24,7 +29,7 @@ const NotesIndex = props => {
 
   return (
     <main className="notes">
-      <NotesNavbar logout={props.logout}/>
+      <NotesNavbar logout={props.logout} push={props.history.push}/>
    
       <aside className="notes-index">
         <div className="notes-header">
@@ -37,7 +42,8 @@ const NotesIndex = props => {
         <ul className="notes-list">
           {props.notes.map(note => {
               return <NotesIndexItemContainer key={note.id} 
-                                     note={note} 
+                                     note={note}
+                                     notes={props.notes}
                                      push={props.history.push}/>
             }
           )}

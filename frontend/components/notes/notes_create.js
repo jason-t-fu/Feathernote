@@ -30,7 +30,9 @@ class NotesCreate extends React.Component {
 
   handleSubmit() {
     this.props.createNote(this.createNoteObject()).then(
-      resNote => this.props.history.push(`notes/${resNote.id}`)
+      resNote => {
+        this.props.history.push(`${resNote.note.id}`);
+      }
     );
   }
 
@@ -45,23 +47,21 @@ class NotesCreate extends React.Component {
   render() {
     return (
       <section className="note-detail">
-        <form className="note-title-input" onSubmit={this.handleSubmit}>
+        <form className="note-create" onSubmit={this.handleSubmit}>
           <button>Create Note</button>
           <input type="text"
                  onChange={(e) => this.setState({ title: e.target.value })}
                  value={this.state.title}
                  placeholder="Title your note"
           />
-        
-          <div id="editor">
-            <QuillEditor value={this.state.body}
-                         onChange={this.handleChange}
-                         defaultValue={this.bodyToObject()}
-                         placeholder={this.props.placeholder} >
-            </QuillEditor>
-          </div>
-
         </form>
+      
+        <div id="editor">
+          <QuillEditor value={this.state.body}
+                        handleChange={this.handleChange}
+                        initialState={this.bodyToObject()} >
+          </QuillEditor>
+        </div>
       </section>
     )
   }

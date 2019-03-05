@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotesNavbar = ({ logout }) => {
+const NotesNavbar = ({ logout, push }) => {
 
   return (
     <nav className="notes-navbar">
@@ -8,7 +8,8 @@ const NotesNavbar = ({ logout }) => {
         <img src={window.images.logo_gray} />
       </div>
       <div className="notes-navbar-inner">
-        <div className="new-note icon-container">
+        <div className="new-note icon-container"
+             onClick={() => push('/notes/new')}>
           <i className="fas fa-plus"></i>
         </div>
       </div>

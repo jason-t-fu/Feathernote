@@ -57,7 +57,7 @@ class NotesDetail extends React.Component {
     let currentNoteId = this.props.match.params.noteId;
     
     if (currentNoteId !== previousNoteId) {
-      if (this.bodyToText() !== prevProps.note.body) {
+      if (prevProps.note && this.bodyToText() !== prevProps.note.body) {
         prevProps.updateNote(this.createNoteObject(previousNoteId));
       }
       this.setState({ 
@@ -68,7 +68,7 @@ class NotesDetail extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.bodyToText() !== this.props.note.body) {
+    if (this.props.note && this.bodyToText() !== this.props.note.body) {
       this.props.updateNote(this.createNoteObject(this.props.match.params.noteId));
     }
   }
@@ -82,6 +82,9 @@ class NotesDetail extends React.Component {
   }
 
   render() {
+
+    if (!this.props.note) return null;
+
     return (
       <section className="note-detail">
         <form className="note-title-input">
@@ -94,9 +97,8 @@ class NotesDetail extends React.Component {
         
         <div id="editor">
           <QuillEditor value={this.state.body}
-                       onChange={this.handleChange}
-                       defaultValue={this.bodyToObject()}
-                       placeholder={this.props.placeholder} >
+                       handleChange={this.handleChange}
+                       initialState={this.bodyToObject()} >
           </QuillEditor>
         </div>
       </section>

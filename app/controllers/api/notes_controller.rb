@@ -6,7 +6,7 @@ class Api::NotesController < ApplicationController
     if @note.save
       render :show
     else
-      render json: @note.errors.full_messages, status: 403
+      render json: @note.errors.full_messages, status: 409
     end
   end
 
@@ -23,7 +23,7 @@ class Api::NotesController < ApplicationController
     if @note.update(note_params)
       render :show
     else
-      render json: @note.errors.full_messages, status: 403
+      render json: @note.errors.full_messages, status: 422
     end
   end
 

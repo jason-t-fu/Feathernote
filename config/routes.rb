@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     resources :notes, except: [:new, :edit]
+    resources :notebooks, except: [:new, :edit]
   end
 
   match "*path", to: redirect('/'), via: :all

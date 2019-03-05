@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import NotesIndexItemContainer from './notes_index_item_container';
 import { Switch, Route } from 'react-router-dom';
+import { ValidNoteRoute } from '../../util/route_util';
 import NotesNavbar from './notes_navbar';
 import NotesDetailContainer from './notes_detail_container';
 import NotesCreateContainer from './notes_create_container';
@@ -63,7 +64,7 @@ const NotesIndex = props => {
       </aside>
       <Switch>
         <Route exact path="/notes/new" component={NotesCreateContainer} />
-        <Route path="/notes/:noteId" component={NotesDetailContainer} />
+        <ValidNoteRoute path="/notes/:noteId" component={NotesDetailContainer} />
       </Switch>
     </main>
   )

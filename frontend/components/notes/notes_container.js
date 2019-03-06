@@ -5,7 +5,6 @@ import Notes from './notes';
 import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
-  debugger;
   return {
     notes: Object.values(state.entities.notes).sort(
       (a, b) => (Date.parse(b.updatedAt) - Date.parse(a.updatedAt))

@@ -7,7 +7,7 @@ export const RECEIVE_NOTES_ERRORS = "RECEIVE_NOTES_ERRORS";
 export const START_LOADING_ALL_NOTES = "START_LOADING_ALL_NOTES";
 export const MAKE_NOTE = "MAKE_NOTE";
 
-const receiveAllNotes = notes => {
+export const receiveAllNotes = notes => {
   return {
     type: RECEIVE_ALL_NOTES,
     notes

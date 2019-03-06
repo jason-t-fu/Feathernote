@@ -22,7 +22,6 @@ const NotesIndexItem = props => {
         }
         else {
           if (props.notes[0].id === props.note.id) {
-            debugger;
             props.receiveNote(props.notes[1]);
           }
         }
@@ -31,12 +30,11 @@ const NotesIndexItem = props => {
   };
 
   const displayNote = () => {
-    debugger;
     props.receiveNote(props.note);
   };
 
   const lastUpdated = timeSince(props.note.updatedAt);
-  const bodySnippet = parseBodyToText().slice(0, 137);
+  const bodySnippet = parseBodyToText().slice(0, 140);
 
   return (
     <div className="notes-index-item-container"

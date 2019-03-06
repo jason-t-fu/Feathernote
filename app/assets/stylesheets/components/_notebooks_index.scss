@@ -1,0 +1,47 @@
+.notebooks-index {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: $white;
+  border-right: 3px solid $lightestgray;
+
+  .notebooks-index-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px;
+    padding-bottom: 40px;
+    color: $lightgray;
+    font-weight: 300;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $lightestgray;
+  }
+
+  .notebooks-index-items {
+    cursor: pointer;
+    
+    .notebooks-index-item-container {
+      border-bottom: 1px solid $lightestgray;
+
+      .notebooks-index-item {
+        margin: 12px 24px;
+
+        .notebooks-index-row {
+          display: flex;
+          justify-content: space-between;
+          color: $darkestgray;
+          font-size: 18px;
+          letter-spacing: 0.5px;
+          margin-bottom: 6px;
+        }
+
+        .notebooks-index-item-count {
+          color: $darkgray;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

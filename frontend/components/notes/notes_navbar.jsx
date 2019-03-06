@@ -1,11 +1,14 @@
 import React from 'react';
 
-const NotesNavbar = ({ makeNote, receiveNote, logout, numNotes }) => {
+const NotesNavbar = ({ makeNote, 
+                       receiveAllNotes, 
+                       logout, 
+                       numNotes,
+                       notes,
+                       openModal }) => {
 
   const ensureValidLocation = () => {
-    if (numNotes === 0) {
-      makeNote();
-    }
+    return numNotes ? receiveAllNotes(notes) : makeNote();
   };
 
   return (
@@ -32,7 +35,7 @@ const NotesNavbar = ({ makeNote, receiveNote, logout, numNotes }) => {
 
       <div className="notes-navbar-inner">
 
-        <div className="index icon-container" onClick={ensureValidLocation}>
+        <div className="index icon-container" onClick={() => ensureValidLocation()}>
           <div className="tooltip">
             <i className="fas fa-file-alt"></i>
             <div className="right">
@@ -42,7 +45,7 @@ const NotesNavbar = ({ makeNote, receiveNote, logout, numNotes }) => {
           </div>
         </div>
 
-        <div className="index icon-container">
+        <div className="index icon-container" onClick={() => openModal('notebooks')} >
           <div className="tooltip">
             <i className="fas fa-book"></i>
             <div className="right">
@@ -52,7 +55,7 @@ const NotesNavbar = ({ makeNote, receiveNote, logout, numNotes }) => {
           </div>
         </div>
 
-        <div className="index icon-container">
+        <div className="index icon-container" onClick={() => openModal('tags')}>
           <div className="tooltip">
             <i className="fas fa-tag"></i>
             <div className="right">

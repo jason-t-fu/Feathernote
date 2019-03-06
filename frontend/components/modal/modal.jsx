@@ -1,6 +1,7 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_action';
 import { connect } from 'react-redux';
+import NotebookIndexContainer from '../notebooks/notebooks_index_container';
 
 function Modal({ modal, closeModal }) {
   if (!modal) return null;

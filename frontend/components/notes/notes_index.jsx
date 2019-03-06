@@ -5,9 +5,9 @@ import NotesIndexItemContainer from './notes_index_item_container';
 const NotesIndex = props => {
   return (
     <aside className="notes-index">
-      <div className="notes-header">
+      <div className="notes-index-header">
         <h3 className="notes-title">Notes</h3>
-        <div className="notes-header-row">
+        <div className="notes-index-header-row">
           <div className="notes-count">{Object.keys(props.notes).length} notes</div>
           <div className="sort-by">Options<i className="fas fa-caret-down"></i></div>
         </div>

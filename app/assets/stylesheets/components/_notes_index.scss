@@ -6,7 +6,7 @@
   min-width: 350px;
   border-right: 1px solid $lightestgray;
 
-  .notes-header {
+  .notes-index-header {
     border-bottom: 2px solid $lightestgray;
     color: $lightgray;
     font-weight: 300;
@@ -18,7 +18,7 @@
       font-size: 22px;
     }
 
-    .notes-header-row {
+    .notes-index-header-row {
       display: flex;
       justify-content: space-between;
       justify-items: flex-start;
@@ -71,7 +71,7 @@
 
       i {
         visibility: hidden;
-        z-index: 100;
+        z-index: 9;
         color: $white;
         cursor: pointer;
       }

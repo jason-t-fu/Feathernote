@@ -1,27 +1,36 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { fetchAllNotes, makeNote, receiveNote } from '../../actions/notes_actions';
-import { fetchAllNotebooks } from '../../actions/notebooks_actions';
 import NotesIndex from './notes_index';
-import { logout } from '../../actions/session_actions';
 
-const mapStateToProps = state => {
+/*
+  Notes are passed down through the NotesIndexContainer invoker in notes.jsx.
+  If neither notebooks nor tags are active, NotesIndex will render all notes.
+  If notebooks are active, filterNotes will filter notes that have the active notebook id.
+  If tags are active, same for tag id.
+  Reducers will ensure that only activeNotebook or activeTag is non-null at a 
+  single point in time.
+*/
+
+const filterNotes = (active, ownProps) => {
+  let filteredNotes = ownProps.notes;
+
+  if (active.activeNotebookId) {
+    filteredNotes = props.notes.filter(note => {
+      return note.notebookId === activeNotebookId;
+    });
+  }
+  // else if (active.activeTag) {
+  //   filteredNotes = props.notes.filter(note => {
+  //     return note.tagId === activeTagId;
+  //   });  
+  // }
+
+  return filteredNotes;
+};
+
+const mapStateToProps = (state, ownProps) => {
   return {
-    notes: Object.values(state.entities.notes).sort(
-      (a, b) => (Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
-    ),
-    // loading: state.ui.loading
+    notes: filterNotes(state.active, ownProps)
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
-    // fetchAllNotes: () => dispatch(fetchAllNotes()),
-    // logout: () => dispatch(logout()),
-    // makeNote: () => dispatch(makeNote()),
-    // receiveNote: note => dispatch(receiveNote(note))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotesIndex);
+export default connect(mapStateToProps, null)(NotesIndex);

@@ -50,7 +50,6 @@ class NotesDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
     let previousNoteId = prevProps.note.id;
     let currentNoteId = this.props.note.id;
     

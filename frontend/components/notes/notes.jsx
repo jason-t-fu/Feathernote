@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import NotesNavbar from './notes_navbar';
+import NotesNavbarContainer from './notes_navbar_container';
 import ActiveNote from './active_note';
 import NotesIndexContainer from './notes_index_container';
+import Modal from '../modal/modal';
 
 const Notes = props => {
   useEffect(() => {
@@ -11,7 +12,6 @@ const Notes = props => {
           const notesKeys = Object.keys(res.notes);
           const postId = notesKeys[notesKeys.length - 1];
           if (postId) {
-            debugger;
             props.receiveNote(res.notes[postId]);
           }
           else {
@@ -29,11 +29,9 @@ const Notes = props => {
 
   return (
     <main className="notes">
-      <NotesNavbar logout={props.logout}
-        makeNote={props.makeNote}
-        receiveNote={props.receiveNote}
-        numNotes={props.notes.length} />
-
+      <NotesNavbarContainer />
+      <Modal />
+      {/* Threading in notes as a prop here since it's already sorted*/}
       <NotesIndexContainer notes={props.notes} />
       <ActiveNote />
     </main>

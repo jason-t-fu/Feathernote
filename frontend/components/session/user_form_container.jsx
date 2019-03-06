@@ -23,8 +23,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signup: user => dispatch(signup(user)),
-    createNotebook: notebook => dispatch(createNotebook(notebook)),
+    action: user => dispatch(signup(user)),
     clearErrors: () => dispatch(clearErrors())
   };
 };

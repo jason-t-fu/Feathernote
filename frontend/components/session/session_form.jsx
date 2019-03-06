@@ -51,19 +51,7 @@ const SessionForm = props => {
     )
 
   const handleSubmit = user => {
-    if (props.formType === "login") {
-      props.login(user)
-    }
-    else {
-      props.signup(user).then(res => {
-        const user = res.user;
-        const regex = /^(.*)\@/;
-        const notebookTitle = user.email.match(regex)[1];
-        const notebook = {title: `${notebookTitle}'s notebook`, 
-                          owner_id: user.id }
-        return props.createNotebook(notebook);
-      });
-    }
+    props.action(user)
   }
 
   // fillUsername.then(fillPassword).then(handleSubmit);

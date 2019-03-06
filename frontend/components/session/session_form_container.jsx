@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: user => dispatch(login(user)),
+    action: user => dispatch(login(user)),
     clearErrors: () => dispatch(clearErrors())
   };
 };

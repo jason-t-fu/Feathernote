@@ -16,8 +16,7 @@ const NotesIndex = props => {
         {props.notes.map(note => {
             return <NotesIndexItemContainer key={note.id} 
                                     note={note}
-                                    notes={props.notes}
-                                    push={props.push} />
+                                     />
           }
         )}
       </ul>

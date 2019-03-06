@@ -5,6 +5,7 @@ export const RECEIVE_NOTE = "RECEIVE_NOTE";
 export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTES_ERRORS = "RECEIVE_NOTES_ERRORS";
 export const START_LOADING_ALL_NOTES = "START_LOADING_ALL_NOTES";
+export const MAKE_NOTE = "MAKE_NOTE";
 
 const receiveAllNotes = notes => {
   return {
@@ -13,10 +14,16 @@ const receiveAllNotes = notes => {
   };
 };
 
-const receiveNote = note => {
+export const receiveNote = note => {
   return {
     type: RECEIVE_NOTE,
     note
+  };
+};
+
+export const makeNote = () => {
+  return {
+    type: MAKE_NOTE
   };
 };
 

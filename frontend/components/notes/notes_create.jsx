@@ -29,11 +29,7 @@ class NotesCreate extends React.Component {
   }
 
   handleSubmit() {
-    this.props.createNote(this.createNoteObject()).then(
-      resNote => {
-        this.props.history.push(`${resNote.note.id}`);
-      }
-    );
+    this.props.createNote(this.createNoteObject());
   }
 
   bodyToObject() {

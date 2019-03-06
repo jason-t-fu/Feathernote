@@ -50,8 +50,9 @@ class NotesDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let previousNoteId = prevProps.match.params.noteId;
-    let currentNoteId = this.props.match.params.noteId;
+    debugger;
+    let previousNoteId = prevProps.note.id;
+    let currentNoteId = this.props.note.id;
     
     if (currentNoteId !== previousNoteId) {
       if (prevProps.note && this.bodyToText() !== prevProps.note.body) {
@@ -66,7 +67,7 @@ class NotesDetail extends React.Component {
 
   componentWillUnmount() {
     if (this.props.note && this.bodyToText() !== this.props.note.body) {
-      this.props.updateNote(this.createNoteObject(this.props.match.params.noteId));
+      this.props.updateNote(this.createNoteObject(this.props.note.id));
     }
   }
 

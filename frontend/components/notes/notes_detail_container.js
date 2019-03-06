@@ -3,8 +3,9 @@ import NotesDetail from './notes_detail';
 import { updateNote } from '../../actions/notes_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  debugger;
   return {
-    note: state.entities.notes[ownProps.match.params.noteId],
+    note: state.entities.notes[state.entities.activeNote],
     errors: state.errors.notes
   };
 };

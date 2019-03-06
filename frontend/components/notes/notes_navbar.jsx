@@ -1,10 +1,10 @@
 import React from 'react';
 
-const NotesNavbar = ({ push, logout, numNotes }) => {
+const NotesNavbar = ({ makeNote, receiveNote, logout, numNotes }) => {
 
-  const pushToValidLocation = () => {
+  const ensureValidLocation = () => {
     if (numNotes === 0) {
-      push('/new');
+      makeNote();
     }
   };
 
@@ -17,7 +17,7 @@ const NotesNavbar = ({ push, logout, numNotes }) => {
 
       <div className="notes-navbar-inner">
 
-        <div className="new-note icon-container" onClick={() => push('/new')}>
+        <div className="new-note icon-container" onClick={() => makeNote()}>
           <div className="tooltip">
 
             <i className="fas fa-plus"></i>
@@ -32,7 +32,7 @@ const NotesNavbar = ({ push, logout, numNotes }) => {
 
       <div className="notes-navbar-inner">
 
-        <div className="index icon-container" onClick={pushToValidLocation}>
+        <div className="index icon-container" onClick={ensureValidLocation}>
           <div className="tooltip">
             <i className="fas fa-file-alt"></i>
             <div className="right">

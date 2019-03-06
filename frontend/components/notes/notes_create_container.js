@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NotesCreate from './notes_create';
-import { createNote } from '../../actions/notes_actions';
+import { createNote, receiveNote } from '../../actions/notes_actions';
 
 const _nullNote = {
   title: '',
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createNote: note => dispatch(createNote(note))
+    createNote: note => dispatch(createNote(note)),
   };
 };
 

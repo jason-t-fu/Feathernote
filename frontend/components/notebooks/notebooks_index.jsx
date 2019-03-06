@@ -1,12 +1,13 @@
 import React from 'react';
+import NotebooksIndexItemContainer from './notebooks_index_item_container';
 
-const NotebookIndex = () => {
+const NotebookIndex = props => {
 
   return (
-    <aside className="notebooks-index-wrapper">
+    <aside className="notebooks-index">
       <div className="notebooks-index-header">
-        <span>Notebooks</span>
-
+        <h3 className="notebooks-title">Notebooks</h3>
+        <i className="fas fa-book-medical"></i>
       </div>
 
       <ul className="notebooks-index-items">

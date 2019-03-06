@@ -1,15 +1,14 @@
 import { RECEIVE_NOTE, MAKE_NOTE } from "../../actions/notes_actions";
 
-const _nullActiveNote = null;
+const _nullActiveNoteId = null;
 
-const activeNoteReducer = (state = _nullActiveNote, action) => {
+const activeNoteReducer = (state = _nullActiveNoteId, action) => {
   Object.freeze(state);
 
   switch (action.type) {
     case MAKE_NOTE:
-      return _nullActiveNote;
+      return _nullActiveNoteId;
     case RECEIVE_NOTE:
-      debugger;
       return action.note.id;
     default: 
       return state;

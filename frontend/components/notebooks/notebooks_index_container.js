@@ -4,14 +4,13 @@ import { closeModal } from '../../actions/modal_action';
 
 const mapStateToProps = state => {
   return {
-    notebooks: state.entities.notebooks
+    notebooks: Object.values(state.entities.notebooks)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal())
-    
   };
 };
 

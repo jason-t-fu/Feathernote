@@ -3,11 +3,10 @@ import NotesCreateContainer from './notes_create_container';
 import NotesDetailContainer from './notes_detail_container';
 import { connect } from 'react-redux';
 
-const ActiveNote = ({ activeNote, loading }) => {
+const ActiveNote = ({ activeNoteId, loading }) => {
   if (loading) return null;
-  debugger;
   let noteComponent;
-  if (activeNote) {
+  if (activeNoteId) {
     noteComponent = <NotesDetailContainer />;
   }
   else {
@@ -20,9 +19,8 @@ const ActiveNote = ({ activeNote, loading }) => {
 };
 
 const mapStateToProps = state => {
-  debugger;
   return {
-    activeNote: state.entities.activeNote,
+    activeNoteId: state.active.activeNoteId,
     loading: state.ui.loading
   };
 };

@@ -5,25 +5,26 @@ const NotebooksIndexItem = props => {
   const handleDelete = (e) => {
     e.stopPropagation();
     props.deleteNotebook(props.notebook.id).then(
-      () => props.push('/notes')
+      () => props.receiveAllNotes()
     );
   };
 
   const displayNotebook = () => {
-    props.push(`/notebooks/${props.notebook.id}`);
+    props.receiveNotebook(props.notebook.id);
   };
 
   return (
-    <div className="notes-index-item-container"
+    <div className="notebooks-index-item-container"
       onClick={displayNotebook}>
-      <div className="notes-index-item">
-        <div className="notes-index-row">
-          <div className="notes-index-item-title">{props.note.title}</div>
+      <div className="notebooks-index-item">
+        <div className="notebooks-index-row">
+          <div className="notebooks-index-item-title">{props.notebook.title}</div>
           <i className="far fa-trash-alt"
             onClick={handleDelete}></i>
         </div>
-        <div className="notes-index-item-date">{lastUpdated}</div>
-        <div className="notes-index-item-body">{bodySnippet}</div>
+        <div className="notebooks-index-item-count">
+          {`${props.notesCount} notes`}
+        </div>
       </div>
     </div>
   );

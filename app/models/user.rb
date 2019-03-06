@@ -60,6 +60,12 @@ class User < ApplicationRecord
     self.session_token ||= SecureRandom.urlsafe_base64
   end
 
+  def create_initial_notebook!
+    regex = /^(.*)\@/
+    notebook_title = self.email.match(regex)[1]
+    Notebook.create!({ title: notebook_title, owner_id: self.id })
+  end
+
   private
   def email_must_be_valid
     if !(email =~ URI::MailTo::EMAIL_REGEXP) && errors.messages.empty?

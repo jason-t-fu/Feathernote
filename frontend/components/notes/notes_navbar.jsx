@@ -4,7 +4,7 @@ const NotesNavbar = ({ push, logout, numNotes }) => {
 
   const pushToValidLocation = () => {
     if (numNotes === 0) {
-      push('/notes/new');
+      push('/new');
     }
   };
 
@@ -17,7 +17,7 @@ const NotesNavbar = ({ push, logout, numNotes }) => {
 
       <div className="notes-navbar-inner">
 
-        <div className="new-note icon-container" onClick={() => push('/notes/new')}>
+        <div className="new-note icon-container" onClick={() => push('/new')}>
           <div className="tooltip">
 
             <i className="fas fa-plus"></i>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Splash = props => {
+const SplashContainer = () => {
 
   const header = () => {
 
@@ -123,4 +123,4 @@ const Splash = props => {
   );
 };
 
-export default Splash;
+export default SplashContainer;

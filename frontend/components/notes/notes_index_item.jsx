@@ -18,11 +18,11 @@ const NotesIndexItem = props => {
     props.deleteNote(props.note.id).then(
       () => {
         if (props.notes.length === 1) {
-          props.push('/notes/new');
+          props.push('/new');
         }
         else {
           if (props.notes[0].id === props.note.id) {
-            props.push(`/notes/${props.notes[1].id}`);
+            props.push(`/${props.notes[1].id}`);
           }
         }
       }
@@ -30,7 +30,7 @@ const NotesIndexItem = props => {
   };
 
   const displayNote = () => {
-    props.push(`/notes/${props.note.id}`);
+    props.push(`/${props.note.id}`);
   };
 
   const lastUpdated = timeSince(props.note.updatedAt);

@@ -20,13 +20,6 @@ const receiveNote = note => {
   };
 };
 
-// const updateNote = note => {
-//   return {
-//     type: UPDATE_NOTE,
-//     note
-//   };
-// };
-
 const removeNote = noteId => {
   return {
     type: REMOVE_NOTE,

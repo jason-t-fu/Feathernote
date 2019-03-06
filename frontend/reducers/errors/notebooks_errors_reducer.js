@@ -1,31 +1,31 @@
-import { RECEIVE_NOTES_ERRORS } from '../actions/notes_actions';
+import { RECEIVE_NOTEBOOKS_ERRORS } from '../../actions/notebooks_actions';
 
 const _nullErrors = [];
 
-const notesErrorsReducer = (state = _nullErrors, action) => {
+const notebooksErrorsReducer = (state = _nullErrors, action) => {
   //Make sure current state is not mutated
   Object.freeze(state);
 
   //On type of action, update state
   switch (action.type) {
-    case RECEIVE_NOTES_ERRORS:
+    case RECEIVE_NOTEBOOKS_ERRORS:
       return action.errors;
     default:
       return state;
   }
 };
 
-export default notesErrorsReducer;
+export default notebooksErrorsReducer;
 
 /*
   State Slice:
   {
-    errors: { notes: [] }
+    errors: { notebooks: [] }
 
     or
 
     errors: {
-      notes: ["Error1", "Error2", ...]
+      notebooks: ["Error1", "Error2", ...]
     }
 
 

@@ -1,7 +1,7 @@
-import { RECEIVE_ERRORS, 
+import { RECEIVE_SESSION_ERRORS, 
          RECEIVE_USER, 
          LOGOUT_USER, 
-         CLEAR_ERRORS } from '../actions/session_actions';
+         CLEAR_ERRORS } from '../../actions/session_actions';
 
 const _nullErrors = [];
 
@@ -14,7 +14,7 @@ const sessionErrorsReducer = (state = _nullErrors, action) => {
     case RECEIVE_USER:
     case LOGOUT_USER:
       return _nullErrors;
-    case RECEIVE_ERRORS:
+    case RECEIVE_SESSION_ERRORS:
       return action.errors;
     case CLEAR_ERRORS:
       return _nullErrors;

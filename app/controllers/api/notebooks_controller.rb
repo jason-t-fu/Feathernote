@@ -11,11 +11,13 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = Notebook.find_by(id: params[:id]).includes(:notes)
+    @notebook = Notebook.where({ owner_id: current_user.id })
+                        .includes(:notes)
+                        .find_by(id: params[:id])
   end
 
   def index
-    @notebooks = Notebook.all
+    @notebooks = Notebook.where({ owner_id: current_user.id })
   end
 
   def update

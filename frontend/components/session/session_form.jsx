@@ -37,8 +37,33 @@ const SessionForm = props => {
     }
   })
 
+  const linkTo = (props.formType === "login") ? 
+    (
+      <>
+        <label name="link-to">Don't have an account?</label>
+        <Link name="link-to" to="/signup">Sign Up</Link>
+      </>
+    ) : (
+      <>
+        <label name="link-to">Already have an account?</label>
+        <Link name="link-to" to="/login">Log In</Link>
+      </>
+    )
+
   const handleSubmit = user => {
-    props.action(user);
+    if (props.formType === "login") {
+      props.login(user)
+    }
+    else {
+      props.signup(user).then(res => {
+        const user = res.user;
+        const regex = /^(.*)\@/;
+        const notebookTitle = user.email.match(regex)[1];
+        const notebook = {title: `${notebookTitle}'s notebook`, 
+                          owner_id: user.id }
+        return props.createNotebook(notebook);
+      });
+    }
   }
 
   // fillUsername.then(fillPassword).then(handleSubmit);
@@ -68,8 +93,7 @@ const SessionForm = props => {
     });
   }
 
-  //if on signup link to login
-  //if on login do demologin
+
   return (
     <div className="form-wrapper">
       <div className="form-frame">
@@ -104,7 +128,7 @@ const SessionForm = props => {
           <button className="session-form-submit">
             Continue
           </button>
-          <div className="link-to">{props.formType}</div>
+          <div className="link-to">{linkTo}</div>
         </form>
       </div>
     </div>

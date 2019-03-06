@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
 import { signup, clearErrors } from '../../actions/session_actions';
+import { createNotebook } from '../../actions/notebooks_actions';
 
 const mapStateToProps = state => {
   return {
@@ -10,11 +11,7 @@ const mapStateToProps = state => {
       email: "",
       password: ""
     },
-    formType: (<>
-                <label name="link-to">Already have an account?</label>
-                <Link name="link-to" to="/login">Log In</Link>
-              </>
-    ),
+    formType: "signup",
     errors: Object.values(state.errors.session),
     demo: false,
     demoLink: <Link className="demo-form-submit"
@@ -26,7 +23,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    action: user => dispatch(signup(user)),
+    signup: user => dispatch(signup(user)),
+    createNotebook: notebook => dispatch(createNotebook(notebook)),
     clearErrors: () => dispatch(clearErrors())
   };
 };

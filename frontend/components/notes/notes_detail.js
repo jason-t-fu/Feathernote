@@ -29,15 +29,12 @@ class NotesDetail extends React.Component {
     this.bodyToObject = this.bodyToObject.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.bodyToText = this.bodyToText.bind(this);
-    // this.attachQuillRefs = this.attachQuillRefs.bind(this);
 
     this.state = {
       title: this.props.note.title,
       body: this.bodyToObject()
     };
 
-    // this.quillRef = null;
-    // this.reactQuillRef = null;
   }
 
   createNoteObject(noteId) {
@@ -106,54 +103,5 @@ class NotesDetail extends React.Component {
     )
   }
 }
-
-// const NotesDetail = props => {
-  
-//   const bodyToObject = () => {
-//     return JSON.parse(props.note.body);
-//   };
-
-//   const bodyToText = () => {
-//     return JSON.stringify(body);
-//   };
-
-//   const initializeBody = () => {
-//     debugger;
-//     const body = bodyToObject();
-//     quill.setContents(body);
-//     setBody(body);
-//   };
-
-//   const coupleBodyUpdates = () => {
-//     const currentBody = quill.getContents().ops;
-//     setBody(currentBody);
-//   };
-
-//   const [body, setBody] = useState({});
-//   const [title, setTitle] = useState(props.note.title);
-
-//   let quill;
-//   useEffect(() => {
-//     quill = new Quill('#editor', {
-//       theme: 'snow'
-//     });
-//     initializeBody();
-//     quill.on('text-change', function (delta, oldDelta, source) {
-//       setBody(quill.getContents().ops);
-//     });
-
-//     return () => {
-//       debugger;
-//       props.updateNote(bodyToText());
-//     };
-//   }, []);
-
-//   return (
-//     <section className="note-detail">
-//       <div id="editor">
-//       </div>
-//     </section>
-//   )
-// };
 
 export default NotesDetail;

@@ -8,31 +8,22 @@ import NotesCreateContainer from './notes_create_container';
 
 const NotesIndex = props => {
   useEffect(() => {
-    props.fetchAllNotes().then(
-      res => {
-        const notes = Object.keys(res.notes);
-        const postId = notes[notes.length - 1];
-        if (postId) {
-          props.history.push(`/notes/${postId}`);
+    props.fetchAllNotebooks().then(
+      resNotebooks => props.fetchAllNotes().then(
+        res => {
+          const notes = Object.keys(res.notes);
+          const postId = notes[notes.length - 1];
+          if (postId) {
+            props.history.push(`/notes/${postId}`);
+          }
+          else {
+            props.history.push('/notes/new');
+          }
         }
-        else {
-          props.history.push('/notes/new');
-        }
-      }
+      )
     );
+    
   }, []);
-
-  // useEffect(() => {
-  //   if (props.location.pathname == "/notes") {
-  //     debugger;
-  //     if (props.notes.length === 0){
-  //       props.history.push('/notes/new');
-  //     }
-  //     else {
-  //       props.history.push(`/notes/${props.notes[0].id}`);
-  //     }
-  //   }
-  // });
 
   if (props.loading){
     return (<div className="loading"></div>);

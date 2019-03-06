@@ -12,7 +12,7 @@
 
 class User < ApplicationRecord
 
-  after_initialize :ensure_session_token, :create_notebook
+  after_initialize :ensure_session_token
 
   validates :email, :session_token, presence: true, uniqueness: true
   validate :email_must_be_valid
@@ -64,12 +64,6 @@ class User < ApplicationRecord
   def email_must_be_valid
     if !(email =~ URI::MailTo::EMAIL_REGEXP) && errors.messages.empty?
       errors.add(:email, "address is not valid");
-    end
-  end
-
-  def create_notebook
-    if self.notebooks.empty?
-      Notebook.create!({ title: "Default" , owner_id: self.id })
     end
   end
 end

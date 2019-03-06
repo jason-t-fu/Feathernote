@@ -11,11 +11,12 @@ class Api::NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find_by(id: params[:id])
+    @note = Note.where({ notebook_id: current_user.notebooks })
+                .find_by(id: params[:id])
   end
 
   def index
-    @notes = Note.all
+    @notes = Note.where({ notebook_id: current_user.notebooks })
   end
 
   def update

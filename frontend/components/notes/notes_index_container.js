@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchAllNotes } from '../../actions/notes_actions';
+import { fetchAllNotebooks } from '../../actions/notebooks_actions';
 import NotesIndex from './notes_index';
 import { logout } from '../../actions/session_actions';
 
@@ -15,6 +16,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
     fetchAllNotes: () => dispatch(fetchAllNotes()),
     logout: () => dispatch(logout())
   };

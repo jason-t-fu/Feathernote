@@ -24,9 +24,11 @@ class NotebooksIndexItem extends React.Component {
   
   handleDelete(e) {
     e.stopPropagation();
-    this.props.deleteNotebook(this.props.notebook.id).then(
-      () => this.props.receiveAllNotes()
-    );
+    // if (this.props.notebook.id === this.props.activeNotebookId) {
+    //   this.props.receiveAllNotes();
+    // }
+    this.props.deleteNotebook(this.props.notebook.id);
+    this.props.closeModal();
   }
 
   handleEdit(e) {

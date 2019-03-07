@@ -25,7 +25,6 @@ const NotesNavbar = ({ makeNote,
   };
 
   const toggleModal = (modal) => {
-    debugger;
     if (modalOpen) {
       closeModal();
     }

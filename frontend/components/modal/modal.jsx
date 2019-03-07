@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { closeModal } from '../../actions/modal_action';
 import { connect } from 'react-redux';
 import NotebookIndexContainer from '../notebooks/notebooks_index_container';
+import NotebookCreateContainer from '../notebooks/notebooks_create_container';
 
 const Modal = ({ modal, closeModal }) => {
 
@@ -17,21 +18,27 @@ const Modal = ({ modal, closeModal }) => {
   let component;
   switch (modal) {
     case 'notebooks':
-      component = <NotebookIndexContainer />;
-      break;
+      return (
+        <div className="modal-background" onClick={closeModal}>
+          <div className="modal-child" onClick={e => e.stopPropagation()}>
+            <NotebookIndexContainer />
+          </div>
+        </div>
+      )
+    case 'newNotebook':
+      return (
+        <div className="modal-background-new" onClick={closeModal}>
+          <div className="modal-child-new" onClick={e => e.stopPropagation()}>
+            <NotebookCreateContainer />
+          </div>
+        </div>
+      )
     // case 'tags':
     //   component = <TagIndexContainer />;
     //   break;
     default:
       return null;
   }
-  return (
-    <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
-        {component}
-      </div>
-    </div>
-  );
 }
 
 const mapStateToProps = state => {

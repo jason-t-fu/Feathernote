@@ -17,6 +17,15 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     border-bottom: 1px solid $lightestgray;
+
+    .fa-book-medical {
+      cursor: pointer;
+      transition: transform 0.1s ease-in-out;
+    }
+
+    .fa-book-medical:hover {
+      transform: scale(1.2);
+    }
   }
 
   .notebooks-index-items {
@@ -29,6 +38,7 @@
         margin-left: 15px;
         color: $white;
         visibility: hidden;
+        transition: transform 0.1s ease-in-out;
       }
 
       .notebooks-index-item {
@@ -69,6 +79,10 @@
 
       i {
         visibility: visible;
+      }
+
+      i:hover {
+        transform: scale(1.2);
       }
     }
 

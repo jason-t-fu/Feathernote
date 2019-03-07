@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const NotebooksCreate = ({ notebook, 
                            errors, 
@@ -6,27 +6,43 @@ const NotebooksCreate = ({ notebook,
                            createNotebook,
                            closeModal,
                            makeNote }) => {
+
   const [title, setTitle] = useState(notebook.title);
+
+  useEffect(() => {
+    const createButton = document.getElementsByClassName('create-notebook')[0];
+    if (title === "") {
+      createButton.disabled = true;
+      createButton.classList.add('invalid');
+    }
+    else {
+      createButton.disabled = false;
+      createButton.classList.remove('invalid');
+    }
+  });
 
   const handleSubmit = (event) => {
     createNotebook({ title, ownerId });
     closeModal();
-    makeNote();
     event.preventDefault();
   };
 
   return (
-    <div className="create-form">
+    <div className="notebook-create">
       <i className="fas fa-book"></i>
-      <h1 className="create-form-title">Create Notebook</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text"
+      <h1 className="create-notebook-title">Create Notebook</h1>
+      <div className="horizontal-text"></div>
+      <form className="create-form" onSubmit={handleSubmit}>
+        <input className="create-form-input"
+               type="text"
                value={title}
-               onChange={(e) => setTitle(e.currentTarget.value)} />
+               onChange={(e) => setTitle(e.currentTarget.value)}
+               placeholder="Title your notebook"
+               autoFocus={true} />
         {errors}
         <div className="create-form-buttons">
-          <button type="button">Cancel</button>
-          <button type="submit">Submit</button>
+          <button className="cancel" type="button">Cancel</button>
+          <button className="create-notebook" type="submit">Create notebook</button>
         </div>
       </form>
     </div>

@@ -35,11 +35,21 @@
   .notes-list {
     flex: 1;
     overflow: scroll;
-    .notes-index-item {
-      padding: 15px 22px;
+
+    .notes-index-item-container {
+      padding: 15px 22px 0 22px;
       transition-duration: 0.1s;
       transition-timing-function: ease-in-out;
+      cursor: pointer;
+    }
+
+    .selected-note {
+      background-color: $darkwhite;
+    }
+
+    .notes-index-item {
       height: 130px;
+      border-bottom: 1px solid $lightestgray;
 
       .notes-index-row {
         display: flex;
@@ -70,15 +80,17 @@
         letter-spacing: 1px;
       }
 
-      i {
+      .far {
         visibility: hidden;
         // z-index: 9;
         color: $white;
+        font-size: 18px;
         cursor: pointer;
+        transition: transform 0.1s ease-in-out;
       }
     }
 
-    .notes-index-item:hover {
+    .notes-index-item-container:hover {
       background-color: $green;
       color: $white;
 
@@ -88,13 +100,13 @@
         color: $white;
       }
 
-      i {
+      .far {
         visibility: visible;
       }
-    }
 
-    .notes-index-item:active {
-      border: 2px solid $lightgray;
+      .far:hover {
+        transform: scale(1.2);
+      }
     }
   }
 }

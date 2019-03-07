@@ -37,8 +37,10 @@ const NotesIndexItem = props => {
   const bodySnippet = parseBodyToText().slice(0, 140);
 
   return (
-    <div className="notes-index-item-container"
-         onClick={displayNote}>
+    <div className={`notes-index-item-container ${
+                    props.activeNoteId === props.note.id ?
+                    'selected-note' : ''}`}
+         onClick={displayNote} >
       <div className="notes-index-item">
         <div className="notes-index-row">
           <div className="notes-index-item-title">{props.note.title}</div>

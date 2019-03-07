@@ -101,16 +101,20 @@ class NotesDetail extends React.Component {
                 />
           {this.props.errors}
         </form>
-
-        <select onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
-                value={this.state.notebookId} >
-          {this.props.notebooks.map(notebook => {
-            return <option key={notebook.id} 
-                           value={notebook.id} >
-                     {notebook.title}
-                   </option>
-          })}
-        </select>
+        <div className="notebook-selector-container">
+          <i className="fas fa-book"></i>
+          <select className="notebook-selector"
+                  onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                  value={this.state.notebookId} >
+            {this.props.notebooks.map(notebook => {
+              return <option key={notebook.id}
+                             value={notebook.id} >
+                             {notebook.title}
+                     </option>
+            })}
+          </select>
+        </div>
+        
 
         <div id="editor">
           <QuillEditor value={this.state.body}

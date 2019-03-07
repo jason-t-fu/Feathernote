@@ -48,6 +48,16 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+// select {
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+// }
+
+// select::-ms-expand {
+//     display: none;
+// }
+
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

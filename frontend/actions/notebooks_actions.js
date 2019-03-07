@@ -1,4 +1,5 @@
 import * as NotebookApiUtil from '../util/notebooks_api_util';
+import { makeNote } from './notes_actions';
 
 export const RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
 export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
@@ -63,7 +64,10 @@ export const fetchNotebook = notebookId => {
 export const createNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.createNotebook(notebook).then(
-      resNotebook => dispatch(receiveNotebook(resNotebook)),
+      resNotebook => {
+        dispatch(receiveNotebook(resNotebook));
+        dispatch(makeNote());
+      },
       errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };

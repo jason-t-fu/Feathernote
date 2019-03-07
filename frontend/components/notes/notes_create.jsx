@@ -18,6 +18,24 @@ class NotesCreate extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const createButton = document.getElementsByClassName('create-note')[0];
+    createButton.disabled = true;
+    createButton.classList.add('invalid');
+  }
+
+  componentDidUpdate() {
+    const createButton = document.getElementsByClassName('create-note')[0];
+    if (this.state.title === "") {
+      createButton.disabled = true;
+      createButton.classList.add('invalid');
+    }
+    else {
+      createButton.disabled = false;
+      createButton.classList.remove('invalid');
+    }
+  }
+
   createNoteObject() {
     debugger;
     return {
@@ -48,25 +66,31 @@ class NotesCreate extends React.Component {
       <section className="note-detail">
         <form className="note-create" onSubmit={this.handleSubmit}>
           <div>
-            <button>Create Note</button>
+            <button className="create-note">Create Note</button>
             <span className="errors">{this.props.errors}</span>
           </div>
-          <input type="text"
+          <input className="note-title-input"
+                 type="text"
                  onChange={(e) => this.setState({ title: e.target.value })}
                  value={this.state.title}
-                 placeholder="Title your note" />
+                 placeholder="Title your note"
+                 autoFocus={true} />
         </form>
-      
-        <select onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
-                value={this.state.notebookId} >
-                {this.props.notebooks.map(notebook => {
-                  return <option key={notebook.id}
-                                 value={notebook.id} >
-                           {notebook.title}
-                         </option>
-                })}
-        </select>
-
+        
+        <div className="notebook-selector-container">
+          <i className="fas fa-book"></i>
+          <select className="notebook-selector"
+                  onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                  value={this.state.notebookId} >
+                  {this.props.notebooks.map(notebook => {
+                    return <option key={notebook.id}
+                                  value={notebook.id} >
+                            {notebook.title}
+                          </option>
+                  })}
+          </select>
+        </div>
+        
         <div id="editor">
           <QuillEditor value={this.state.body}
                         handleChange={this.handleChange}

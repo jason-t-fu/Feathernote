@@ -46,7 +46,7 @@ export const fetchAllNotebooks = () => {
     dispatch(startLoadingAllNotebooks());
     return NotebookApiUtil.fetchAllNotebooks().then(
       notebooks => dispatch(receiveAllNotebooks(notebooks)),
-      errors => dispatch(receiveNotebookErrors(errors))
+      errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };
 };
@@ -55,7 +55,7 @@ export const fetchNotebook = notebookId => {
   return dispatch => {
     return NotebookApiUtil.fetchNotebook(notebookId).then(
       resNotebook => dispatch(receiveNotebook(resNotebook)),
-      errors => dispatch(receiveNotebookErrors(errors))
+      errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };
 };
@@ -64,7 +64,7 @@ export const createNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.createNotebook(notebook).then(
       resNotebook => dispatch(receiveNotebook(resNotebook)),
-      errors => dispatch(receiveNotebookErrors(errors))
+      errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };
 };
@@ -73,7 +73,7 @@ export const updateNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.updateNotebook(notebook).then(
       resNotebook => dispatch(receiveNotebook(resNotebook)),
-      errors => dispatch(receiveNotebookErrors(errors))
+      errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };
 };
@@ -82,7 +82,7 @@ export const deleteNotebook = notebookId => {
   return dispatch => {
     return NotebookApiUtil.deleteNotebook(notebookId).then(
       () => dispatch(removeNotebook(notebookId)),
-      errors => dispatch(receiveNotebookErrors(errors))
+      errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };
 };

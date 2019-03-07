@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NotesCreate from './notes_create';
-import { createNote, receiveNote } from '../../actions/notes_actions';
+import { createNote } from '../../actions/notes_actions';
 
 const _nullNote = {
   title: '',

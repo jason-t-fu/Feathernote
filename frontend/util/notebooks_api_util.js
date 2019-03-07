@@ -17,7 +17,10 @@ export const createNotebook = notebook => {
   return $.ajax({
     method: 'POST',
     url: '/api/notebooks',
-    data: { notebook }
+    data: { notebook: {
+      title: notebook.title,
+      owner_id: notebook.ownerId
+    }}
   });
 };
 
@@ -25,7 +28,12 @@ export const updateNotebook = notebook => {
   return $.ajax({
     method: 'PATCH',
     url: `/api/notebooks/${notebook.id}`,
-    data: { notebook }
+    data: {
+      notebook: {
+        title: notebook.title,
+        owner_id: notebook.ownerId
+      }
+    }
   });
 };
 

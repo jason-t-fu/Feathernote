@@ -34,8 +34,7 @@ class NotebooksIndexItem extends React.Component {
     this.setState({edit: true});
   }
 
-  displayNotebook(e) {
-    e.currentTarget.classList.add('selected')
+  displayNotebook() {
     this.props.receiveNotebook(this.props.notebook);
     if (this.props.notes.length) {
       this.props.receiveNote(this.props.notes[0]);

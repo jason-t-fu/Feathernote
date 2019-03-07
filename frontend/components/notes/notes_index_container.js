@@ -14,8 +14,8 @@ const filterNotes = (active, ownProps) => {
   let filteredNotes = ownProps.notes;
 
   if (active.activeNotebookId) {
-    filteredNotes = props.notes.filter(note => {
-      return note.notebookId === activeNotebookId;
+    filteredNotes = ownProps.notes.filter(note => {
+      return note.notebookId === active.activeNotebookId;
     });
   }
   // else if (active.activeTag) {

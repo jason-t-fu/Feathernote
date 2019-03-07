@@ -14,10 +14,10 @@ const receiveAllNotebooks = notebooks => {
 };
 
 // Payload consists of the selected notebook and notes belonging to the notebook
-const receiveNotebook = notebookPayload => {
+export const receiveNotebook = notebook => {
   return {
     type: RECEIVE_NOTEBOOK,
-    notebookPayload
+    notebook
   };
 };
 
@@ -54,7 +54,7 @@ export const fetchAllNotebooks = () => {
 export const fetchNotebook = notebookId => {
   return dispatch => {
     return NotebookApiUtil.fetchNotebook(notebookId).then(
-      payload => dispatch(receiveNotebook(payload)),
+      resNotebook => dispatch(receiveNotebook(resNotebook)),
       errors => dispatch(receiveNotebookErrors(errors))
     );
   };
@@ -63,7 +63,7 @@ export const fetchNotebook = notebookId => {
 export const createNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.createNotebook(notebook).then(
-      payload => dispatch(receiveNotebook(payload)),
+      resNotebook => dispatch(receiveNotebook(resNotebook)),
       errors => dispatch(receiveNotebookErrors(errors))
     );
   };
@@ -72,7 +72,7 @@ export const createNotebook = notebook => {
 export const updateNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.updateNotebook(notebook).then(
-      payload => dispatch(receiveNotebook(payload)),
+      resNotebook => dispatch(receiveNotebook(resNotebook)),
       errors => dispatch(receiveNotebookErrors(errors))
     );
   };

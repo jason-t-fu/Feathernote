@@ -1,15 +1,39 @@
 import React from 'react';
+import { closeModal } from '../../actions/modal_action';
 
 const NotesNavbar = ({ makeNote, 
                        receiveAllNotes, 
                        logout, 
                        numNotes,
                        notes,
-                       openModal }) => {
+                       modalOpen,
+                       openModal,
+                       closeModal }) => {
 
   const ensureValidLocation = () => {
-    return numNotes ? receiveAllNotes(notes) : makeNote();
+    if (numNotes) {
+      receiveAllNotes(notes);
+    } 
+    else {
+      makeNote();
+    } 
+    closeModal();
   };
+
+  const makeNewNote = () => {
+    makeNote();
+    closeModal();
+  };
+
+  const toggleModal = (modal) => {
+    if (modalOpen) {
+      closeModal();
+    }
+    else {
+      openModal(modal);
+    }
+  };
+
 
   return (
     <nav className="notes-navbar">
@@ -20,7 +44,7 @@ const NotesNavbar = ({ makeNote,
 
       <div className="notes-navbar-inner">
 
-        <div className="new-note icon-container" onClick={() => makeNote()}>
+        <div className="new-note icon-container" onClick={() => makeNewNote()}>
           <div className="tooltip">
 
             <i className="fas fa-plus"></i>
@@ -45,7 +69,7 @@ const NotesNavbar = ({ makeNote,
           </div>
         </div>
 
-        <div className="index icon-container" onClick={() => openModal('notebooks')} >
+        <div className="index icon-container" onClick={() => toggleModal('notebooks')} >
           <div className="tooltip">
             <i className="fas fa-book"></i>
             <div className="right">
@@ -55,7 +79,7 @@ const NotesNavbar = ({ makeNote,
           </div>
         </div>
 
-        <div className="index icon-container" onClick={() => openModal('tags')}>
+        <div className="index icon-container" onClick={() => toggleModal('tags')}>
           <div className="tooltip">
             <i className="fas fa-tag"></i>
             <div className="right">

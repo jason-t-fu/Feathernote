@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login, clearErrors } from '../../actions/session_actions';
+import { selectAllSessionErrors } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
       password: ""
     },
     formType: "login",
-    errors: Object.values(state.errors.session),
+    errors: selectAllSessionErrors(state),
     demo: ownProps.location.state,
     demoLink: <button type="button"
                       id="demo"

@@ -3,19 +3,11 @@ import NotebooksIndexItem from './notebooks_index_item';
 import { deleteNotebook, receiveNotebook, updateNotebook } from '../../actions/notebooks_actions';
 import { receiveAllNotes, receiveNote, makeNote } from '../../actions/notes_actions';
 import { closeModal } from '../../actions/modal_action';
-
-const filterAndSortNotesInNotebook = (allNotes, notebookId) => {
-  return allNotes.filter( note => {
-    return note.notebookId === notebookId;
-  }).sort(
-    (a, b) => (Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
-  );
-};
+import { filterAndSortNotesInNotebook } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    notes: filterAndSortNotesInNotebook(Object.values(state.entities.notes), 
-                                 ownProps.notebook.id),
+    notes: filterAndSortNotesInNotebook(state, ownProps.notebook.id),
     activeNotebookId: state.active.activeNotebookId
   };
 };

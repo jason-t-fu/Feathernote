@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
 import { signup, clearErrors } from '../../actions/session_actions';
 import { createNotebook } from '../../actions/notebooks_actions';
+import { selectAllSessionErrors } from '../../reducers/selectors';
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +13,7 @@ const mapStateToProps = state => {
       password: ""
     },
     formType: "signup",
-    errors: Object.values(state.errors.session),
+    errors: selectAllSessionErrors(state),
     demo: false,
     demoLink: <Link className="demo-form-submit"
                     to={{ pathname: "/login", state: true }} >

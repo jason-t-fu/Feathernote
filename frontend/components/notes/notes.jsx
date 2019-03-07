@@ -26,7 +26,7 @@ const Notes = props => {
   if (props.loading) {
     return (<div className="loading"></div>);
   }
-
+  
   return (
     <main className="notes">
       <NotesNavbarContainer />

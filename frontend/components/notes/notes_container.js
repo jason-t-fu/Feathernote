@@ -3,12 +3,11 @@ import { fetchAllNotes, makeNote, receiveNote } from '../../actions/notes_action
 import { fetchAllNotebooks } from '../../actions/notebooks_actions';
 import Notes from './notes';
 import { logout } from '../../actions/session_actions';
+import { sortAllNotes } from '../../reducers/selectors';
 
 const mapStateToProps = state => {
   return {
-    notes: Object.values(state.entities.notes).sort(
-      (a, b) => (Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
-    ),
+    notes: sortAllNotes(state),
     loading: state.ui.loading
   };
 };

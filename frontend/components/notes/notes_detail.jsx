@@ -92,7 +92,9 @@ class NotesDetail extends React.Component {
                 />
           {this.props.errors}
         </form>
-        
+        <select>
+          
+        </select>
         <div id="editor">
           <QuillEditor value={this.state.body}
                        handleChange={this.handleChange}

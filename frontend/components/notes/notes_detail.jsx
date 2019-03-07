@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import QuillEditor from './quill_editor';
 
 /*
@@ -29,10 +29,12 @@ class NotesDetail extends React.Component {
     this.bodyToObject = this.bodyToObject.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.bodyToText = this.bodyToText.bind(this);
+    this.noteWasModified = this.noteWasModified.bind(this);
 
     this.state = {
       title: this.props.note.title,
-      body: this.bodyToObject()
+      body: this.bodyToObject(),
+      notebookId: this.props.note.notebookId
     };
 
   }
@@ -42,7 +44,13 @@ class NotesDetail extends React.Component {
       id: noteId,
       title: this.state.title,
       body: this.bodyToText(),
+      notebookId: this.state.notebookId
     };
+  }
+
+  noteWasModified(note) {
+    return (this.bodyToText() !== note.body || 
+            this.state.notebookId !== note.notebookId);
   }
 
   handleChange(content, delta, source, editor) {
@@ -54,18 +62,19 @@ class NotesDetail extends React.Component {
     let currentNoteId = this.props.note.id;
     
     if (currentNoteId !== previousNoteId) {
-      if (prevProps.note && this.bodyToText() !== prevProps.note.body) {
+      if (prevProps.note && this.noteWasModified(prevProps.note)) {
         prevProps.updateNote(this.createNoteObject(previousNoteId));
       }
       this.setState({ 
         title: this.props.note.title,
-        body: this.bodyToObject()
+        body: this.bodyToObject(),
+        notebookId: this.props.note.notebookId
       });
     }
   }
 
   componentWillUnmount() {
-    if (this.props.note && this.bodyToText() !== this.props.note.body) {
+    if (this.props.note && this.noteWasModified(this.props.note)) {
       this.props.updateNote(this.createNoteObject(this.props.note.id));
     }
   }
@@ -86,19 +95,27 @@ class NotesDetail extends React.Component {
       <section className="note-detail">
         <form className="note-title-input">
           <input type="text"
-                 onChange={(e) => this.setState({ title: e.target.value })}
+                 onChange={(e) => this.setState({ title: e.currentTarget.value })}
                  value={this.state.title}
                  placeholder="Title your note"
                 />
           {this.props.errors}
         </form>
-        <select>
-          
+
+        <select onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                value={this.state.notebookId} >
+          {this.props.notebooks.map(notebook => {
+            return <option key={notebook.id} 
+                           value={notebook.id} >
+                     {notebook.title}
+                   </option>
+          })}
         </select>
+
         <div id="editor">
           <QuillEditor value={this.state.body}
                        handleChange={this.handleChange}
-                       initialState={this.bodyToObject()} >
+                       initialState={this.state.body} >
           </QuillEditor>
         </div>
       </section>

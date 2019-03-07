@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NotesCreate from './notes_create';
 import { createNote } from '../../actions/notes_actions';
+import { selectAllNotebooks } from '../../reducers/selectors';
 
 const _nullNote = {
   title: '',
@@ -10,7 +11,9 @@ const _nullNote = {
 const mapStateToProps = (state, ownProps) => {
   return {
     note: _nullNote,
-    errors: state.errors.notes
+    errors: state.errors.notes,
+    activeNotebookId: state.active.activeNotebookId,
+    notebooks: selectAllNotebooks(state)
   };
 };
 

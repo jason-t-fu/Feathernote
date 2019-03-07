@@ -16,7 +16,13 @@ export const createNote = note => {
   return $.ajax({
     method: "POST",
     url: '/api/notes',
-    data: {note}
+    data: { 
+      note: {
+        title: note.title,
+        body: note.body,
+        notebook_id: note.notebookId
+      }
+    }
   });
 };
 
@@ -24,7 +30,13 @@ export const updateNote = note => {
   return $.ajax({
     method: "PATCH",
     url: `/api/notes/${note.id}`,
-    data: {note}
+    data: {
+      note: {
+        title: note.title,
+        body: note.body,
+        notebook_id: note.notebookId
+      }
+    }
   });
 };
 

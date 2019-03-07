@@ -13,14 +13,17 @@ class NotesCreate extends React.Component {
 
     this.state = {
       title: this.props.note.title,
-      body: this.bodyToObject()
+      body: this.bodyToObject(),
+      notebookId: props.activeNotebookId || 1
     };
   }
 
   createNoteObject() {
+    debugger;
     return {
       title: this.state.title,
-      body: this.bodyToText()
+      body: this.bodyToText(),
+      notebookId: this.state.notebookId
     };
   }
 
@@ -54,10 +57,20 @@ class NotesCreate extends React.Component {
                  placeholder="Title your note" />
         </form>
       
+        <select onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                value={this.state.notebookId} >
+                {this.props.notebooks.map(notebook => {
+                  return <option key={notebook.id}
+                                 value={notebook.id} >
+                           {notebook.title}
+                         </option>
+                })}
+        </select>
+
         <div id="editor">
           <QuillEditor value={this.state.body}
                         handleChange={this.handleChange}
-                        initialState={this.bodyToObject()} >
+                        initialState={this.state.body} >
           </QuillEditor>
         </div>
       </section>

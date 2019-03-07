@@ -25,23 +25,55 @@
     .notebooks-index-item-container {
       border-bottom: 1px solid $lightestgray;
 
+      i {
+        margin-left: 15px;
+        color: $white;
+        visibility: hidden;
+      }
+
       .notebooks-index-item {
-        margin: 12px 24px;
 
         .notebooks-index-row {
           display: flex;
           justify-content: space-between;
           color: $darkestgray;
           font-size: 18px;
+          font-weight: 300;
           letter-spacing: 0.5px;
-          margin-bottom: 6px;
+          padding: 12px 24px 6px 24px;
+
+          #notebook-title {
+            width: auto;
+            max-width: 250px;
+            font-style: italic;
+            font-weight: 400;
+          }
         }
 
         .notebooks-index-item-count {
           color: $darkgray;
           font-size: 12px;
+          margin: 0 24px 12px 24px;
         }
       }
+    }
+
+    .notebooks-index-item-container:hover {
+      background-color: $green;
+
+      .notebooks-index-item-count,
+      .notebooks-index-row {
+        color: $white;
+      }
+
+
+      i {
+        visibility: visible;
+      }
+    }
+
+    .selected-notebook {
+      background-color: $selected;
     }
   }
 }

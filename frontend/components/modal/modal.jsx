@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { closeModal } from '../../actions/modal_action';
 import { connect } from 'react-redux';
 import NotebookIndexContainer from '../notebooks/notebooks_index_container';
 
-function Modal({ modal, closeModal }) {
-  if (!modal) return null;
+const Modal = ({ modal, closeModal }) => {
+
+  useEffect(() => {
+    const modalChild = document.getElementsByClassName('modal-child');
+    if (modalChild.length) modalChild[0].classList.add('show');
+    
+    return () => {
+      if (modalChild.length) modalChild[0].classList.remove('show');
+    };
+  });
   
   let component;
   switch (modal) {

@@ -15,7 +15,8 @@ const filterAndSortNotesInNotebook = (allNotes, notebookId) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     notes: filterAndSortNotesInNotebook(Object.values(state.entities.notes), 
-                                 ownProps.notebook.id)
+                                 ownProps.notebook.id),
+    activeNotebookId: state.active.activeNotebookId
   };
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { closeModal } from '../../actions/modal_action';
 
 const NotesNavbar = ({ makeNote, 
                        receiveAllNotes, 
@@ -26,6 +25,7 @@ const NotesNavbar = ({ makeNote,
   };
 
   const toggleModal = (modal) => {
+    debugger;
     if (modalOpen) {
       closeModal();
     }
@@ -44,7 +44,7 @@ const NotesNavbar = ({ makeNote,
 
       <div className="notes-navbar-inner">
 
-        <div className="new-note icon-container" onClick={() => makeNewNote()}>
+        <div className="new-note icon-container" onClick={makeNewNote}>
           <div className="tooltip">
 
             <i className="fas fa-plus"></i>
@@ -59,7 +59,7 @@ const NotesNavbar = ({ makeNote,
 
       <div className="notes-navbar-inner">
 
-        <div className="index icon-container" onClick={() => ensureValidLocation()}>
+        <div className="index icon-container" onClick={ensureValidLocation}>
           <div className="tooltip">
             <i className="fas fa-file-alt"></i>
             <div className="right">
@@ -95,7 +95,7 @@ const NotesNavbar = ({ makeNote,
 
         <div className="profile icon-container" onClick={logout}>
           <div className="tooltip">
-            <i className="fas fa-user"></i>
+            <i className="fas fa-sign-out-alt"></i>
             <div className="right">
               <p>Logout</p>
               <i></i>

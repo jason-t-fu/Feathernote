@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebooksIndexItemContainer from './notebooks_index_item_container';
+import Modal from '../modal/modal';
 
 const NotebookIndex = props => {
 

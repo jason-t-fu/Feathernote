@@ -3,12 +3,13 @@ import {
   RECEIVE_NOTEBOOK,
   REMOVE_NOTEBOOK
 } from '../../actions/notebooks_actions';
-import { merge } from 'lodash'
+import { merge } from 'lodash';
 
 const _nullNotebooks = {};
 
 const notebooksReducer = (state = _nullNotebooks, action) => {
   Object.freeze(state);
+
   switch (action.type) {
     case RECEIVE_ALL_NOTEBOOKS:
       return action.notebooks;
@@ -37,17 +38,11 @@ export default notebooksReducer;
     notebooks: {
       1: {
         id: 1,
-        title: "",
-        owner_id: "",
-        notebookId: "",
-        createdAt: "",
+        title: ""
       }
       2: {
         id: 2,
-        title: "",
-        owner_id: "",
-        notebookId: "",
-        createdAt: "",
+        title: ""
       }
     }
   }

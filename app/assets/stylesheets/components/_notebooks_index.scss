@@ -8,9 +8,9 @@
 
   .notebooks-index-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 22px;
-    padding-bottom: 40px;
+    padding-bottom: 16px;
     color: $lightgray;
     font-weight: 300;
     font-size: 22px;
@@ -18,13 +18,35 @@
     letter-spacing: 1px;
     border-bottom: 1px solid $lightestgray;
 
-    .fa-book-medical {
-      cursor: pointer;
-      transition: transform 0.1s ease-in-out;
+    .notebooks-header-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 28px;
+
+      .fa-book-medical {
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+      }
+
+      .fa-book-medical:hover {
+        transform: scale(1.2);
+      }
     }
 
-    .fa-book-medical:hover {
-      transform: scale(1.2);
+    .notebooks-search-bar {
+      border: 1px solid $lightestgray;
+      border-radius: 2px;
+      background: transparent;
+      padding: 10px;
+      width: 100%;
+      font-size: 14px;
+      font-weight: 300;
+      text-align: center;
+      color: $darkestgray;
+    }
+
+    .notebooks-search-bar::placeholder {
+      color: $lightgray;
     }
   }
 

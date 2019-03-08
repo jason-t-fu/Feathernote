@@ -22,7 +22,9 @@ const NotebooksCreate = ({ notebook,
   });
 
   const handleSubmit = (event) => {
-    createNotebook({ title, ownerId });
+    createNotebook({ title, ownerId }).then(
+      () => makeNote()
+    );
     closeModal();
     event.preventDefault();
   };

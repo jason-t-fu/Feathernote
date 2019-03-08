@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :notes, except: [:new, :edit]
     resources :notebooks, except: [:new, :edit]
+    resources :tags, except: [:new, :edit]
   end
 
   match "*path", to: redirect('/'), via: :all

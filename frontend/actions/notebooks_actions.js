@@ -64,10 +64,7 @@ export const fetchNotebook = notebookId => {
 export const createNotebook = notebook => {
   return dispatch => {
     return NotebookApiUtil.createNotebook(notebook).then(
-      resNotebook => {
-        dispatch(receiveNotebook(resNotebook));
-        dispatch(makeNote());
-      },
+      resNotebook =>  dispatch(receiveNotebook(resNotebook)),
       errors => dispatch(receiveNotebookErrors(errors.responseJSON))
     );
   };

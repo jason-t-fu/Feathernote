@@ -11,24 +11,33 @@
     color: $lightgray;
     font-weight: 300;
     letter-spacing: 1px;
+    padding: 22px 22px 0 22px;
 
     .notes-title {
-      margin: 22px;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       text-transform: uppercase;
       font-size: 22px;
     }
 
-    .notes-index-header-row {
-      display: flex;
-      justify-content: space-between;
-      justify-items: flex-start;
-      margin: 8px 22px;
+    .notes-search-bar {
+      border: 1px solid $lightestgray;
+      border-radius: 2px;
+      background: transparent;
+      padding: 10px;
+      width: 100%;
       font-size: 14px;
+      font-weight: 300;
+      text-align: center;
+      color: $darkestgray;
+    }
 
-      .fa-caret-down {
-        margin-left: 3px;
-      }
+    .notes-search-bar::placeholder {
+      color: $lightgray;
+    }
+
+    .notes-count {
+      margin: 10px 0;
+      font-size: 14px;
     }
   }
 

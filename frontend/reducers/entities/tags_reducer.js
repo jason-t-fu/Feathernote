@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_TAGS, RECEIVE_TAG, REMOVE_TAG } from '../../actions/tags_action';
+import { RECEIVE_ALL_TAGS, RECEIVE_TAG, REMOVE_TAG } from '../../actions/tags_actions';
 import { merge } from 'lodash';
 
 const _nullTag = {};

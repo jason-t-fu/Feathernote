@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import NotesNavbar from "./notes_navbar";
 import { logout } from "../../util/session_api_util";
 import { makeNote, receiveAllNotes } from "../../actions/notes_actions";
-import { openModal, closeModal } from "../../actions/modal_action";
+import { openModal, closeModal } from "../../actions/modal_actions";
 import { selectAllNotes } from "../../reducers/selectors";
 
 const mapStateToProps = state => {

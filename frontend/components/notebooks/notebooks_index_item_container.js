@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import NotebooksIndexItem from './notebooks_index_item';
 import { deleteNotebook, receiveNotebook, updateNotebook } from '../../actions/notebooks_actions';
 import { receiveAllNotes, receiveNote, makeNote } from '../../actions/notes_actions';
-import { closeModal } from '../../actions/modal_action';
+import { closeModal } from '../../actions/modal_actions';
 import { filterAndSortNotesInNotebook } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {

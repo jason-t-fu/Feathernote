@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { closeModal } from '../../actions/modal_action';
+import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import NotebookIndexContainer from '../notebooks/notebooks_index_container';
 import NotebookCreateContainer from '../notebooks/notebooks_create_container';

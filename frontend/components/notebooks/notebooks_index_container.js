@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NotebookIndex from './notebooks_index';
-import { closeModal, openModal } from '../../actions/modal_action';
+import { closeModal, openModal } from '../../actions/modal_actions';
 import { selectAllNotebooks } from '../../reducers/selectors';
 
 const mapStateToProps = state => {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import NotebooksCreate from './notebooks_create';
 import { createNotebook } from '../../actions/notebooks_actions';
-import { closeModal } from '../../actions/modal_action';
+import { closeModal } from '../../actions/modal_actions';
 import { makeNote } from '../../actions/notes_actions';
 
 const _nullNotebook = {

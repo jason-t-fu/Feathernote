@@ -30,8 +30,7 @@ const NotebookIndex = props => {
         {props.notebooks.filter( notebook => {
           return notebook.title.toLocaleLowerCase()
                  .startsWith(search.toLocaleLowerCase());
-        }
-        ).map(notebook => {
+        }).map(notebook => {
           return <NotebooksIndexItemContainer key={notebook.id}
                     notebook={notebook}
                     />;

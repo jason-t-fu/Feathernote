@@ -1,4 +1,4 @@
-import { RECEIVE_TAG_ERRORS } from '../../actions/tags_action';
+import { RECEIVE_TAG_ERRORS } from '../../actions/tags_actions';
 
 const _nullErrors = [];
 

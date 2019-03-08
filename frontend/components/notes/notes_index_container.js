@@ -11,25 +11,26 @@ import NotesIndex from './notes_index';
 */
 
 const filterNotes = (active, ownProps) => {
-  let filteredNotes = ownProps.notes;
-
   if (active.activeNotebookId) {
-    filteredNotes = ownProps.notes.filter(note => {
+    return ownProps.notes.filter(note => {
       return note.notebookId === active.activeNotebookId;
     });
   }
-  // else if (active.activeTag) {
-  //   filteredNotes = props.notes.filter(note => {
-  //     return note.tagId === activeTagId;
+  // else if (active.activeTagId) {
+  //   return ownProps.notes.filter(note => {
+  //     return note.tagId === active.activeTagId;
   //   });  
   // }
-
-  return filteredNotes;
+  else {
+    return ownProps.notes;
+  }
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    notes: filterNotes(state.active, ownProps)
+    notes: filterNotes(state.active, ownProps),
+    activeNotebook: state.entities.notebooks[state.active.activeNotebookId],
+    // activeTag: state.entities.tags[state.active.activeTag]
   };
 };
 

@@ -30,12 +30,13 @@ class NotesDetail extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.bodyToText = this.bodyToText.bind(this);
     this.noteWasModified = this.noteWasModified.bind(this);
+    this.resetTimeout = this.resetTimeout.bind(this);
 
     this.state = {
       title: this.props.note.title,
       body: this.bodyToObject(),
       notebookId: this.props.note.notebookId,
-      autoSave: null
+      autoSave: 0
     };
 
   }
@@ -50,32 +51,25 @@ class NotesDetail extends React.Component {
   }
 
   noteWasModified(note) {
-    return (this.bodyToText() !== note.body || 
+    return (this.state.title !== note.title ||
+            this.bodyToText() !== note.body || 
             this.state.notebookId !== note.notebookId);
   }
 
   handleChange(content, delta, source, editor) {
-    this.setState({ body: editor.getContents() });
+    this.setState({ 
+      body: editor.getContents(),
+      autoSave: this.resetTimeout()
+    });
   }
 
   componentDidUpdate(prevProps) {
-    if (!this.state.autoSave) {
-      this.state.autoSave = setTimeout(() => {
-        console.log("Save here");
-        this.props.updateNote(this.createNoteObject(this.props.note.id));
-      }, 5000);
-    }
-    else {
-      clearTimeout(this.state.autoSave);
-      this.setState({ autoSave: null });
-    }
-
-    let previousNoteId = prevProps.note.id;
-    let currentNoteId = this.props.note.id;
+    let previousNote = prevProps.note;
+    let currentNote = this.props.note;
     
-    if (currentNoteId !== previousNoteId) {
+    if (currentNote.id !== previousNote.id) {
       if (prevProps.note && this.noteWasModified(prevProps.note)) {
-        prevProps.updateNote(this.createNoteObject(previousNoteId));
+        prevProps.updateNote(this.createNoteObject(previousNote.id));
       }
       this.setState({ 
         title: this.props.note.title,
@@ -99,6 +93,23 @@ class NotesDetail extends React.Component {
     return JSON.stringify(this.state.body);
   }
 
+  updateField(fieldName) {
+    return (e) => {
+      this.setState({
+        [fieldName]: e.target.value,
+        autoSave: this.resetTimeout()
+      });
+    };
+  }
+
+  resetTimeout() {
+    clearTimeout(this.state.autoSave);
+    return setTimeout(() => {
+      console.log("Save here");
+      this.props.updateNote(this.createNoteObject(this.props.note.id));
+    }, 5000);
+  }
+
   render() {
 
     if (!this.props.note) return null;
@@ -107,7 +118,7 @@ class NotesDetail extends React.Component {
       <section className="note-detail">
         <form className="note-title-input">
           <input type="text"
-                 onChange={(e) => this.setState({ title: e.currentTarget.value })}
+                 onChange={this.updateField('title')}
                  value={this.state.title}
                  placeholder="Title your note"
                 />
@@ -116,7 +127,7 @@ class NotesDetail extends React.Component {
         <div className="notebook-selector-container">
           <i className="fas fa-book"></i>
           <select className="notebook-selector"
-                  onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                  onChange={this.updateField('notebookId')}
                   value={this.state.notebookId} >
             {this.props.notebooks.map(notebook => {
               return <option key={notebook.id}

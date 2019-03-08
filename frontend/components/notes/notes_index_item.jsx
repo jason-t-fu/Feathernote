@@ -21,8 +21,14 @@ const NotesIndexItem = props => {
           props.makeNote();
         }
         else {
-          if (props.notes[0].id === props.note.id) {
-            props.receiveNote(props.notes[1]);
+          let deletedNoteIndex = props.notes.findIndex(
+            note => note.id === props.note.id
+          );
+          if (props.notes[deletedNoteIndex - 1]) {
+            props.receiveNote(props.notes[deletedNoteIndex - 1]);
+          }
+          else {
+            props.receiveNote(props.notes[deletedNoteIndex + 1]);
           }
         }
       }

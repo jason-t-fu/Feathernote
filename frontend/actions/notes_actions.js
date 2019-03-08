@@ -6,6 +6,7 @@ export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTES_ERRORS = "RECEIVE_NOTES_ERRORS";
 export const START_LOADING_ALL_NOTES = "START_LOADING_ALL_NOTES";
 export const MAKE_NOTE = "MAKE_NOTE";
+export const RECEIVE_UPDATED_NOTE = "RECEIVE_UPDATED_NOTE";
 
 export const receiveAllNotes = notes => {
   return {
@@ -17,6 +18,13 @@ export const receiveAllNotes = notes => {
 export const receiveNote = note => {
   return {
     type: RECEIVE_NOTE,
+    note
+  };
+};
+
+export const receiveUpdatedNote = note => {
+  return {
+    type: RECEIVE_UPDATED_NOTE,
     note
   };
 };
@@ -78,7 +86,7 @@ export const createNote = note => {
 export const updateNote = note => {
   return dispatch => {
     return NotesApiUtil.updateNote(note).then(
-      (resNote) => dispatch(receiveNote(resNote)),
+      (resNote) => dispatch(receiveUpdatedNote(resNote)),
       errors => dispatch(receiveErrors(errors.responseJSON))
     );
   };

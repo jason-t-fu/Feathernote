@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import NotesIndexItemContainer from './notes_index_item_container';
-import NotesIndexHeaderContainer from './notes_index_header_container';
 
 const NotesIndex = props => {
   const [search, setSearch] = useState("");
@@ -43,6 +42,7 @@ const NotesIndex = props => {
         {searchFilter(props.notes).map(note => {
             return <NotesIndexItemContainer key={note.id} 
                                     note={note}
+                                    notes={props.notes}
                                      />
           }
         )}

@@ -37,7 +37,6 @@ class NotesCreate extends React.Component {
   }
 
   createNoteObject() {
-    debugger;
     return {
       title: this.state.title,
       body: this.bodyToText(),

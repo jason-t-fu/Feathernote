@@ -34,7 +34,8 @@ class NotesDetail extends React.Component {
     this.state = {
       title: this.props.note.title,
       body: this.bodyToObject(),
-      notebookId: this.props.note.notebookId
+      notebookId: this.props.note.notebookId,
+      autoSave: null
     };
 
   }
@@ -58,6 +59,17 @@ class NotesDetail extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (!this.state.autoSave) {
+      this.state.autoSave = setTimeout(() => {
+        console.log("Save here");
+        this.props.updateNote(this.createNoteObject(this.props.note.id));
+      }, 5000);
+    }
+    else {
+      clearTimeout(this.state.autoSave);
+      this.setState({ autoSave: null });
+    }
+
     let previousNoteId = prevProps.note.id;
     let currentNoteId = this.props.note.id;
     

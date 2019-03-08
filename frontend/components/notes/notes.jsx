@@ -3,6 +3,7 @@ import NotesNavbarContainer from './notes_navbar_container';
 import ActiveNote from './active_note';
 import NotesIndexContainer from './notes_index_container';
 import Modal from '../modal/modal';
+import ReactLoading from 'react-loading';
 
 const Notes = props => {
   useEffect(() => {
@@ -24,7 +25,15 @@ const Notes = props => {
   }, []);
 
   if (props.loading) {
-    return (<div className="loading"></div>);
+    return (
+      <div className="loading-icon-wrapper">
+        <ReactLoading className="loading-icon"
+                      type="bubbles"
+                      color="#58d177"
+                      height={"10%"}
+                      width={"10%"} />
+      </div>
+    );
   }
   
   return (

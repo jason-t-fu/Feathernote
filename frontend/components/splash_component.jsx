@@ -15,14 +15,14 @@ const SplashContainer = () => {
             </div>
           </Link>
 
-          <nav className="splash-header-nav">
+          {/* <nav className="splash-header-nav">
             <ul>
               <li>Plans</li>
               <li>Features</li>
               <li>Help & Learning</li>
               <li>About Us</li>
             </ul>
-          </nav>
+          </nav> */}
 
           <nav className="splash-header-session">
             <ul>

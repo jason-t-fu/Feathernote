@@ -78,11 +78,11 @@ const NotesNavbar = ({ makeNote,
           </div>
         </div>
 
-        <div className="index icon-container" onClick={() => toggleModal('tags')}>
+        <div className="index icon-container" >
           <div className="tooltip">
             <i className="fas fa-tag"></i>
             <div className="right">
-              <p>Tags</p>
+              <p>Tags - Under Construction</p>
               <i></i>
             </div>
           </div>

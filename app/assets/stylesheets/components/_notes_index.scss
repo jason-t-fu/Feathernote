@@ -59,6 +59,7 @@
     .notes-index-item {
       height: 130px;
       border-bottom: 1px solid $lightestgray;
+      word-wrap: break-word;
 
       .notes-index-row {
         display: flex;

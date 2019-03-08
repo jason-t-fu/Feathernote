@@ -115,35 +115,37 @@ class NotesDetail extends React.Component {
     if (!this.props.note) return null;
 
     return (
-      <section className="note-detail">
-        <form className="note-title-input">
-          <input type="text"
-                 onChange={this.updateField('title')}
-                 value={this.state.title}
-                 placeholder="Title your note"
-                />
-          {this.props.errors}
-        </form>
-        <div className="notebook-selector-container">
-          <i className="fas fa-book"></i>
-          <select className="notebook-selector"
-                  onChange={this.updateField('notebookId')}
-                  value={this.state.notebookId} >
-            {this.props.notebooks.map(notebook => {
-              return <option key={notebook.id}
-                             value={notebook.id} >
-                             {notebook.title}
-                     </option>
-            })}
-          </select>
-        </div>
-        
+      <section className="note-detail-wrapper">
+        <div className="note-detail">
+          <form className="note-title-input">
+            <input type="text"
+                  onChange={this.updateField('title')}
+                  value={this.state.title}
+                  placeholder="Title your note"
+                  />
+            {this.props.errors}
+          </form>
+          <div className="notebook-selector-container">
+            <i className="fas fa-book"></i>
+            <select className="notebook-selector"
+                    onChange={this.updateField('notebookId')}
+                    value={this.state.notebookId} >
+              {this.props.notebooks.map(notebook => {
+                return <option key={notebook.id}
+                              value={notebook.id} >
+                              {notebook.title}
+                      </option>
+              })}
+            </select>
+          </div>
+          
 
-        <div id="editor">
-          <QuillEditor value={this.state.body}
-                       handleChange={this.handleChange}
-                       initialState={this.state.body} >
-          </QuillEditor>
+          <div id="editor">
+            <QuillEditor value={this.state.body}
+                        handleChange={this.handleChange}
+                        initialState={this.state.body} >
+            </QuillEditor>
+          </div>
         </div>
       </section>
     )

@@ -1,8 +1,34 @@
 .note-detail-wrapper {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   height: 100vh;
   width: calc(100% - (241px + 345px));
+
+  .notebook-selector-container {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 3px;
+
+    .notebook-selector {
+      width: fit-content;
+      padding: 5px;
+      font-size: 14px;
+      margin-left: 5px;
+      border: none;
+      background: $darkwhite;
+      font-family: $sans-serif;
+      height: 30px;
+    }
+
+    .notebook-selector:focus {
+      outline-color: $lightestgreen;
+    }
+
+    .fa-book {
+      color: $lightgray;
+    }
+  }
 
   .note-detail {
     display: flex;
@@ -11,31 +37,6 @@
     height: 100%;
     padding: 0px 40px;
     padding-top: 40px;
-
-    .notebook-selector-container {
-      position: relative;
-      margin-left: 20px;
-      margin-bottom: 3px;
-
-      .notebook-selector {
-        width: fit-content;
-        padding: 5px;
-        font-size: 14px;
-        margin-left: 5px;
-        border: none;
-        background: $darkwhite;
-        font-family: $sans-serif;
-        height: 30px;
-      }
-
-      .notebook-selector:focus {
-        outline-color: $lightestgreen;
-      }
-
-      .fa-book {
-        color: $lightgray;
-      }
-    }
     
     .ql-snow,
     .ql-toolbar {
@@ -50,16 +51,6 @@
       z-index: 9;
     }
 
-    .note-title-input {
-      margin-top: 30px;
-      margin-bottom: 13px;
-      margin-left: 20px;
-      font-weight: 300;
-      letter-spacing: 1px;
-      font-size: 24px;
-      color: $textgreen;
-    }
-
     #editor {
       flex: 1;
       overflow: scroll;
@@ -68,7 +59,15 @@
     input::placeholder {
       color: $textgreen;
     }
-
-    
   }
+  .note-title-input {
+    margin-top: 30px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 24px;
+    color: $textgreen;
+  }
+
 }

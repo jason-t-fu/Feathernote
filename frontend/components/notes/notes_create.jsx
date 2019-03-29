@@ -14,7 +14,7 @@ class NotesCreate extends React.Component {
     this.state = {
       title: this.props.note.title,
       body: this.bodyToObject(),
-      notebookId: props.activeNotebookId || 1
+      notebookId: props.activeNotebookId || props.notebooks[0].id
     };
   }
 
@@ -62,39 +62,41 @@ class NotesCreate extends React.Component {
 
   render() {
     return (
-      <section className="note-detail">
-        <form className="note-create" onSubmit={this.handleSubmit}>
-          <div>
-            <button className="create-note">Create Note</button>
-            <span className="errors">{this.props.errors}</span>
+      <section className="note-detail-wrapper">
+        <div className="note-detail">
+          <form className="note-title-input" onSubmit={this.handleSubmit}>
+            <div>
+              <button className="create-note">Create Note</button>
+              <span className="errors">{this.props.errors}</span>
+            </div>
+            <input className="note-title-input"
+                  type="text"
+                  onChange={(e) => this.setState({ title: e.target.value })}
+                  value={this.state.title}
+                  placeholder="Title your note"
+                  autoFocus={true} />
+          </form>
+          
+          <div className="notebook-selector-container">
+            <i className="fas fa-book"></i>
+            <select className="notebook-selector"
+                    onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
+                    value={this.state.notebookId} >
+                    {this.props.notebooks.map(notebook => {
+                      return <option key={notebook.id}
+                                    value={notebook.id} >
+                              {notebook.title}
+                            </option>
+                    })}
+            </select>
           </div>
-          <input className="note-title-input"
-                 type="text"
-                 onChange={(e) => this.setState({ title: e.target.value })}
-                 value={this.state.title}
-                 placeholder="Title your note"
-                 autoFocus={true} />
-        </form>
-        
-        <div className="notebook-selector-container">
-          <i className="fas fa-book"></i>
-          <select className="notebook-selector"
-                  onChange={(e) => this.setState({ notebookId: e.currentTarget.value })}
-                  value={this.state.notebookId} >
-                  {this.props.notebooks.map(notebook => {
-                    return <option key={notebook.id}
-                                  value={notebook.id} >
-                            {notebook.title}
-                          </option>
-                  })}
-          </select>
-        </div>
-        
-        <div id="editor">
-          <QuillEditor value={this.state.body}
-                        handleChange={this.handleChange}
-                        initialState={this.state.body} >
-          </QuillEditor>
+          
+          <div id="editor">
+            <QuillEditor value={this.state.body}
+                          handleChange={this.handleChange}
+                          initialState={this.state.body} >
+            </QuillEditor>
+          </div>
         </div>
       </section>
     )

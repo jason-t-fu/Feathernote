@@ -5,17 +5,13 @@ import { connect } from 'react-redux';
 
 const ActiveNote = ({ activeNoteId, loading }) => {
   if (loading) return null;
-  let noteComponent;
+
   if (activeNoteId) {
-    noteComponent = <NotesDetailContainer />;
+    return <NotesDetailContainer />;
   }
   else {
-    noteComponent = <NotesCreateContainer />;
+    return <NotesCreateContainer />;
   }
-
-  return (
-    noteComponent
-  );
 };
 
 const mapStateToProps = state => {

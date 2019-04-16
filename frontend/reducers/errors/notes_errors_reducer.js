@@ -1,4 +1,4 @@
-import { RECEIVE_NOTES_ERRORS } from '../../actions/notes_actions';
+import { RECEIVE_NOTES_ERRORS, RECEIVE_NOTE } from '../../actions/notes_actions';
 
 const _nullErrors = [];
 
@@ -10,6 +10,8 @@ const notesErrorsReducer = (state = _nullErrors, action) => {
   switch (action.type) {
     case RECEIVE_NOTES_ERRORS:
       return action.errors;
+    case RECEIVE_NOTE:
+      return _nullErrors;
     default:
       return state;
   }

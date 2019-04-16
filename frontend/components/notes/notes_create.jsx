@@ -48,7 +48,8 @@ class NotesCreate extends React.Component {
     this.setState({ body: editor.getContents() });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.createNote(this.createNoteObject());
   }
 

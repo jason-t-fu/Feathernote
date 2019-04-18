@@ -10,6 +10,7 @@ const Notes = props => {
     props.fetchAllNotebooks().then(
       resNotebooks => props.fetchAllNotes().then(
         res => {
+          debugger;
           const notesKeys = Object.keys(res.notes);
           const postId = notesKeys[notesKeys.length - 1];
           if (postId) {

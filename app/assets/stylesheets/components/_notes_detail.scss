@@ -68,6 +68,11 @@
     letter-spacing: 1px;
     font-size: 24px;
     color: $textgreen;
+    display: flex;
+
+    input {
+      flex: 1;
+    }
   }
 
 }

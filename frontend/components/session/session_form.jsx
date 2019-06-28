@@ -1,72 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SwitchSession from './switch_session';
+import DemoButton from './demo-button';
 
-const SessionForm = props => {
-  const [email, setEmail] = useState(props.user.email);
-  const [password, setPassword] = useState(props.user.password);
+const SessionForm = ({ user, formType, errors, demo, action, clearErrors }) => {
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
   const [demoDisabled, setDemoDisabled] = useState(false);
+
   const demoUser = {
     email: "admin@feathernote.com",
     password: "password"
   };
 
   useEffect(() => {
-    const demoButton = document.getElementById('demo');
-    if (demoButton) {
-      demoButton.onclick = startDemo;
-    }
-
-    if (props.demo) {
-      demoButton.click();
+    if (demo) {
+      startDemo();
     }
 
     return () => {
-      props.clearErrors();
-    }
-  }, []);
-
-  let emailErrors = [];
-  let credentialErrors = [];
-  props.errors.forEach( error => {
-    let formattedError = <span className="errors" key={error}>{error}</span>;
-    if (error.includes("Email")) {
-      emailErrors.push(formattedError);
-    }
-    else {
-      credentialErrors.push(formattedError);
-    }
-  })
-
-  const linkTo = (props.formType === "login") ? 
-    (
-      <>
-        <label name="link-to">Don't have an account?</label>
-        <Link name="link-to" to="/signup">Sign Up</Link>
-      </>
-    ) : (
-      <>
-        <label name="link-to">Already have an account?</label>
-        <Link name="link-to" to="/login">Log In</Link>
-      </>
-    )
+      clearErrors();
+    };
+  }, [demo]);
 
   const handleSubmit = user => {
-    props.action(user)
-  }
-
-  // fillUsername.then(fillPassword).then(handleSubmit);
-  // fillUsername returns a promise, calls fillPassword.
-  // fillPassword also returns a promise, then calls handleSubmit.
+    action(user);
+  };
 
   const startDemo = () => {
     setDemoDisabled(true);
     fillField('email', setEmail)
       .then(() => fillField('password', setPassword))
       .then(() => handleSubmit(demoUser));
-  }
+  };
 
   const fillField = (fieldName, setCallback) => {
-    setDemoDisabled(true);
     return new Promise( (resolve, reject) => {
       let i = 0;
       let intervalId = window.setInterval(fillInterval, 60);
@@ -79,8 +47,7 @@ const SessionForm = props => {
         }
       }
     });
-  }
-
+  };
 
   return (
     <div className="form-wrapper">
@@ -97,7 +64,7 @@ const SessionForm = props => {
               disabled={demoDisabled}
               onSubmit={() => handleSubmit({email, password})}>
           
-          {props.demoLink}
+          <DemoButton startDemo={startDemo} formType={formType} />
           
           <div className="horizontal-text">or</div>
           
@@ -106,17 +73,25 @@ const SessionForm = props => {
                 placeholder="Email"
                 id="email-input"
                 onChange={event => setEmail(event.currentTarget.value)} />
-          {emailErrors}
+          {errors.email ? 
+            errors.email.map(error => {
+              <span className="errors" key={error}>{error}</span>
+            }) : null
+          }
           <input type="password"
                 value={password}
                 placeholder="Password"
                 id="password-input"
                 onChange={event => setPassword(event.currentTarget.value)} />
-          {credentialErrors}
+          {errors.password ?
+            errors.password.map(error => {
+              <span className="errors" key={error}>{error}</span>
+            }) : null
+          }
           <button className="session-form-submit">
             Continue
           </button>
-          <div className="link-to">{linkTo}</div>
+          <SwitchSession formType={formType} />
         </form>
       </div>
     </div>

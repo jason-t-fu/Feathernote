@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login, clearErrors } from '../../actions/session_actions';
@@ -12,13 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     },
     formType: "login",
     errors: selectAllSessionErrors(state),
-    demo: ownProps.location.state,
-    demoLink: <button type="button"
-                      id="demo"
-                      className="demo-form-submit"
-                      >
-                Demo Login
-              </button>
+    demo: ownProps.location.state
   };
 };
 

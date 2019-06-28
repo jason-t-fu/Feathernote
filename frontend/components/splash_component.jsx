@@ -21,7 +21,7 @@ const SplashContainer = () => {
                         to="/signup">Sign up</Link></li>
               <li><Link className="login-link"
                         to="/login">Log in</Link></li>
-              <li><Link className="login-link"
+              <li><Link className="demo-form-submit"
                         to={{ pathname: "/login", state: true }}>
                         Demo Login</Link></li>
             </ul>

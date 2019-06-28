@@ -1,4 +1,4 @@
-import { RECEIVE_NOTEBOOKS_ERRORS } from '../../actions/notebooks_actions';
+import { RECEIVE_NOTEBOOK_ERRORS } from '../../actions/notebooks_actions';
 
 const _nullErrors = [];
 
@@ -8,7 +8,7 @@ const notebooksErrorsReducer = (state = _nullErrors, action) => {
 
   //On type of action, update state
   switch (action.type) {
-    case RECEIVE_NOTEBOOKS_ERRORS:
+    case RECEIVE_NOTEBOOK_ERRORS:
       return action.errors;
     default:
       return state;

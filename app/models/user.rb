@@ -14,10 +14,12 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  validates :email, :session_token, presence: true, uniqueness: true
+  validates :email, presence: { message: "Email can't be blank" }, uniqueness: true
+  validates :session_token, presence: true
   validate :email_must_be_valid
   validates :password_digest, presence: true
-  validates :password, length: {minimum: 8, allow_nil: true}
+  validates :password, length: { minimum: 8, allow_nil: true, 
+      message: "Password is too short (minimum is 8 characters)" }
 
   has_many :notebooks,
     primary_key: :id,
@@ -69,7 +71,7 @@ class User < ApplicationRecord
   private
   def email_must_be_valid
     if !(email =~ URI::MailTo::EMAIL_REGEXP) && errors.messages.empty?
-      errors.add(:email, "address is not valid");
+      errors.add(:email, "Email address is not valid");
     end
   end
 end

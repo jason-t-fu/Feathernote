@@ -8,7 +8,10 @@ class Api::UsersController < ApplicationController
       @user.create_initial_notebook!
       render "api/users/show"
     else
-      render json: @user.errors.full_messages, status: 409
+      render json: 
+        { email: @user.errors.messages[:email],
+          password: @user.errors.messages[:password]
+        }, status: 409
     end
   end
 

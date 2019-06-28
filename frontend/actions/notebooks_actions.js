@@ -1,10 +1,9 @@
 import * as NotebooksApiUtil from '../util/notebooks_api_util';
-import { makeNote } from './notes_actions';
 
 export const RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
 export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK";
-export const RECEIVE_NOTEBOOKS_ERRORS = "RECEIVE_NOTEBOOK_ERRORS";
+export const RECEIVE_NOTEBOOK_ERRORS = "RECEIVE_NOTEBOOK_ERRORS";
 export const START_LOADING_ALL_NOTEBOOKS = "START_LOADING_ALL_NOTEBOOKS";
 
 const receiveAllNotebooks = notebooks => {
@@ -31,7 +30,7 @@ const removeNotebook = notebookId => {
 
 const receiveNotebookErrors = errors => {
   return {
-    type: RECEIVE_NOTEBOOKS_ERRORS,
+    type: RECEIVE_NOTEBOOK_ERRORS,
     errors
   };
 };
